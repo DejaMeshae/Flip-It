@@ -190,6 +190,10 @@
     <Compile Include="Migrations\201905211852133_CreatedUserAbstractClass.Designer.cs">
       <DependentUpon>201905211852133_CreatedUserAbstractClass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905212045118_AddedUserPhotoProperty.cs" />
+    <Compile Include="Migrations\201905212045118_AddedUserPhotoProperty.Designer.cs">
+      <DependentUpon>201905212045118_AddedUserPhotoProperty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -274,6 +278,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201905211852133_CreatedUserAbstractClass.resx">
       <DependentUpon>201905211852133_CreatedUserAbstractClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905212045118_AddedUserPhotoProperty.resx">
+      <DependentUpon>201905212045118_AddedUserPhotoProperty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
