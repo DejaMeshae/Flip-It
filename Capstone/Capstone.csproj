@@ -181,8 +181,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BuyersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SellersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -201,6 +204,18 @@
     <Compile Include="Migrations\201905221412002_RmovedUsersModel.cs" />
     <Compile Include="Migrations\201905221412002_RmovedUsersModel.Designer.cs">
       <DependentUpon>201905221412002_RmovedUsersModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905221418443_AddedDBSetsToIdentityModel.cs" />
+    <Compile Include="Migrations\201905221418443_AddedDBSetsToIdentityModel.Designer.cs">
+      <DependentUpon>201905221418443_AddedDBSetsToIdentityModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905221516052_CreatedItemsModel.cs" />
+    <Compile Include="Migrations\201905221516052_CreatedItemsModel.Designer.cs">
+      <DependentUpon>201905221516052_CreatedItemsModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905221524540_ChangedAModel.cs" />
+    <Compile Include="Migrations\201905221524540_ChangedAModel.Designer.cs">
+      <DependentUpon>201905221524540_ChangedAModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -221,6 +236,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Question_Mark.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Controllers\FlipItDiagram.cd" />
@@ -269,6 +285,21 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Sellers\Create.cshtml" />
+    <Content Include="Views\Sellers\Delete.cshtml" />
+    <Content Include="Views\Sellers\Details.cshtml" />
+    <Content Include="Views\Sellers\Edit.cshtml" />
+    <Content Include="Views\Sellers\Index.cshtml" />
+    <Content Include="Views\Buyers\Create.cshtml" />
+    <Content Include="Views\Buyers\Delete.cshtml" />
+    <Content Include="Views\Buyers\Details.cshtml" />
+    <Content Include="Views\Buyers\Edit.cshtml" />
+    <Content Include="Views\Buyers\Index.cshtml" />
+    <Content Include="Views\Items\Create.cshtml" />
+    <Content Include="Views\Items\Delete.cshtml" />
+    <Content Include="Views\Items\Details.cshtml" />
+    <Content Include="Views\Items\Edit.cshtml" />
+    <Content Include="Views\Items\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -298,6 +329,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905221412002_RmovedUsersModel.resx">
       <DependentUpon>201905221412002_RmovedUsersModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905221418443_AddedDBSetsToIdentityModel.resx">
+      <DependentUpon>201905221418443_AddedDBSetsToIdentityModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905221516052_CreatedItemsModel.resx">
+      <DependentUpon>201905221516052_CreatedItemsModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905221524540_ChangedAModel.resx">
+      <DependentUpon>201905221524540_ChangedAModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

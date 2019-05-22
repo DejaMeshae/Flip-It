@@ -9,6 +9,10 @@ namespace Capstone.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public DbSet<Sellers> Sellers { get; set; }
+        public DbSet<Buyers> Buyers { get; set; }
+        public DbSet<Items> Items { get; set; }
+
         public byte[] UserPhoto { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -30,5 +34,11 @@ namespace Capstone.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Capstone.Models.Sellers> Sellers { get; set; }
+
+        public System.Data.Entity.DbSet<Capstone.Models.Buyers> Buyers { get; set; }
+
+        public System.Data.Entity.DbSet<Capstone.Models.Items> Items { get; set; }
     }
 }
