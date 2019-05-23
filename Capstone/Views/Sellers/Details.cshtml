@@ -15,7 +15,7 @@
         </dt>
         <dd>
             @Html.DisplayFor(model => model.UserPhoto)
-            <img src="@Url.Action("UserPhotos", "Sellers" )" height="188" width="108" />
+            <img src="@Url.Action("UserPhotos", "Sellers" )" height="158" width="108" />
         </dd>
 
         <dt>
@@ -78,5 +78,6 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.SellersId }) |
+    @Html.ActionLink("Create A Listing", "Create", "Items") |
     @Html.ActionLink("Back to List", "Index")
 </p>

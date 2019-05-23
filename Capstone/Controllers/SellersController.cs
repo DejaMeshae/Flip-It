@@ -21,11 +21,10 @@ namespace Capstone.Controllers
         public ActionResult Index()
         {
             //var sellers = db.Sellers.Include(s => s.ApplicationUser); display a list of users
-            //string CurrentUserID = User.Identity.GetUserId(); //User ID thats logged in now
-            var CurrentSeller = db.Items.Select(e => e.SellersId).FirstOrDefault(); // 
-            var yourItemForSale = db.Items.Select(i => i.SellersId == CurrentSeller); //
-            //var yourItemForSale = db.Sellers
-            return View(yourItemForSale.ToList());
+            string CurrentUserID = User.Identity.GetUserId(); //User ID thats logged in now
+            var CurrentSeller = db.Sellers.Where(e => e.ApplicationUserId == CurrentUserID).FirstOrDefault(); //comparing the user thats signed in ID to the ID in the database  
+            var yourItemForSale = db.Items.Where(i => i.SellersId == CurrentSeller.SellersId).ToList(); //comparing the sellers id of the item for sale to the id of the person thats logged in
+            return View(yourItemForSale); //IF NOT WORKING (ERROR LINE 26) MAKE SURE THAT SELLER CREATED A LISTING IN THE FIRST PLACE
         }
 
         public FileContentResult UserPhotos()
@@ -116,7 +115,7 @@ namespace Capstone.Controllers
                 db.Sellers.Add(sellers);
                 sellers.UserPhoto = imageData;
                 db.SaveChanges();
-                return RedirectToAction("Details");
+                return RedirectToAction("Details", new { id = sellers.SellersId });
             }
 
             ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email", sellers.ApplicationUserId);
@@ -144,13 +143,13 @@ namespace Capstone.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SellersId,Firstname,Lastname,Address,City,State,ZipCode,UserPhoto,Lat,Lng,ApplicationUserId")] Sellers sellers)
+        public ActionResult Edit([Bind(Include = "SellersId,Firstname,Lastname,Address,City,State,ZipCode")] Sellers sellers)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(sellers).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = sellers.SellersId }); 
             }
             ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email", sellers.ApplicationUserId);
             return View(sellers);

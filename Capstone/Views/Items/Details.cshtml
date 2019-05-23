@@ -10,6 +10,15 @@
     <h4>Items</h4>
     <hr />
     <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemPhoto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ItemPhoto)
+            <img src="@Url.Action("ItemPhotos", "Items" )" height="188" width="108" />
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.ItemName)
         </dt>
@@ -32,14 +41,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.Category)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserPhoto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserPhoto)
         </dd>
 
         <dt>
