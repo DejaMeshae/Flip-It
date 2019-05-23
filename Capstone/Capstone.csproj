@@ -217,6 +217,14 @@
     <Compile Include="Migrations\201905221524540_ChangedAModel.Designer.cs">
       <DependentUpon>201905221524540_ChangedAModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905230030091_AddedMorePropertiesToItemsModel.cs" />
+    <Compile Include="Migrations\201905230030091_AddedMorePropertiesToItemsModel.Designer.cs">
+      <DependentUpon>201905230030091_AddedMorePropertiesToItemsModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905231412054_ChangedPropertiesNameInItemsModel.cs" />
+    <Compile Include="Migrations\201905231412054_ChangedPropertiesNameInItemsModel.Designer.cs">
+      <DependentUpon>201905231412054_ChangedPropertiesNameInItemsModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Buyers.cs" />
@@ -338,6 +346,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905221524540_ChangedAModel.resx">
       <DependentUpon>201905221524540_ChangedAModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905230030091_AddedMorePropertiesToItemsModel.resx">
+      <DependentUpon>201905230030091_AddedMorePropertiesToItemsModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905231412054_ChangedPropertiesNameInItemsModel.resx">
+      <DependentUpon>201905231412054_ChangedPropertiesNameInItemsModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

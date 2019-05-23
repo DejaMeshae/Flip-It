@@ -30,46 +30,46 @@ namespace Capstone.Controllers
 
             return View();
         }
+        //***Delete below later***
+        //public FileContentResult UserPhotos()
+        //{
+        //    if (User.Identity.IsAuthenticated)
+        //    {
+        //        String userId = User.Identity.GetUserId();
 
-        public FileContentResult UserPhotos()
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                String userId = User.Identity.GetUserId();
+        //        if (userId == null)
+        //        {
+        //            string fileName = HttpContext.Server.MapPath(@"~/Images/Question_Mark.png");
 
-                if (userId == null)
-                {
-                    string fileName = HttpContext.Server.MapPath(@"~/Images/Question_Mark.png");
+        //            byte[] imageData = null;
+        //            FileInfo fileInfo = new FileInfo(fileName);
+        //            long imageFileLength = fileInfo.Length;
+        //            FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+        //            BinaryReader br = new BinaryReader(fs);
+        //            imageData = br.ReadBytes((int)imageFileLength);
 
-                    byte[] imageData = null;
-                    FileInfo fileInfo = new FileInfo(fileName);
-                    long imageFileLength = fileInfo.Length;
-                    FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                    BinaryReader br = new BinaryReader(fs);
-                    imageData = br.ReadBytes((int)imageFileLength);
+        //            return File(imageData, "image /png");
 
-                    return File(imageData, "image /png");
+        //        }
+        //        // to get the user details to load user Image 
+        //        var bdUsers = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
+        //        var userImage = bdUsers.Users.Where(x => x.Id == userId).FirstOrDefault();
 
-                }
-                // to get the user details to load user Image 
-                var bdUsers = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
-                var userImage = bdUsers.Users.Where(x => x.Id == userId).FirstOrDefault();
+        //        return new FileContentResult(userImage.UserPhoto, "image/jpeg");
+        //    }
+        //    else
+        //    {
+        //        string fileName = HttpContext.Server.MapPath(@"~/Images/Question_Mark.png");
 
-                return new FileContentResult(userImage.UserPhoto, "image/jpeg");
-            }
-            else
-            {
-                string fileName = HttpContext.Server.MapPath(@"~/Images/Question_Mark.png");
+        //        byte[] imageData = null;
+        //        FileInfo fileInfo = new FileInfo(fileName);
+        //        long imageFileLength = fileInfo.Length;
+        //        FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+        //        BinaryReader br = new BinaryReader(fs);
+        //        imageData = br.ReadBytes((int)imageFileLength);
+        //        return File(imageData, "image/png");
 
-                byte[] imageData = null;
-                FileInfo fileInfo = new FileInfo(fileName);
-                long imageFileLength = fileInfo.Length;
-                FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                BinaryReader br = new BinaryReader(fs);
-                imageData = br.ReadBytes((int)imageFileLength);
-                return File(imageData, "image/png");
-
-            }
-        }
+        //    }
+        //}
     }
 }

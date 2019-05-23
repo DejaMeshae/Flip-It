@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Capstone.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace Capstone.Controllers
 {
@@ -17,9 +20,55 @@ namespace Capstone.Controllers
         // GET: Sellers
         public ActionResult Index()
         {
-            var sellers = db.Sellers.Include(s => s.ApplicationUser);
-            return View(sellers.ToList());
+            //var sellers = db.Sellers.Include(s => s.ApplicationUser); display a list of users
+            //string CurrentUserID = User.Identity.GetUserId(); //User ID thats logged in now
+            var CurrentSeller = db.Items.Select(e => e.SellersId).FirstOrDefault(); // 
+            var yourItemForSale = db.Items.Select(i => i.SellersId == CurrentSeller); //
+            //var yourItemForSale = db.Sellers
+            return View(yourItemForSale.ToList());
         }
+
+        public FileContentResult UserPhotos()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                String userId = User.Identity.GetUserId();
+
+                if (userId == null)
+                {
+                    string fileName = HttpContext.Server.MapPath(@"~/Images/Question_Mark.png");
+
+                    byte[] imageData = null;
+                    FileInfo fileInfo = new FileInfo(fileName);
+                    long imageFileLength = fileInfo.Length;
+                    FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                    BinaryReader br = new BinaryReader(fs);
+                    imageData = br.ReadBytes((int)imageFileLength);
+
+                    return File(imageData, "image /png");
+
+                }
+                // to get the user details to load user Image 
+                var bdUsers = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
+                var userImage = bdUsers.Users.Where(x => x.Id == userId).FirstOrDefault();
+
+                return new FileContentResult(userImage.UserPhoto, "image/jpeg");
+            }
+            else
+            {
+                string fileName = HttpContext.Server.MapPath(@"~/Images/Question_Mark.png");
+
+                byte[] imageData = null;
+                FileInfo fileInfo = new FileInfo(fileName);
+                long imageFileLength = fileInfo.Length;
+                FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
+                BinaryReader br = new BinaryReader(fs);
+                imageData = br.ReadBytes((int)imageFileLength);
+                return File(imageData, "image/png");
+
+            }
+        }
+
 
         // GET: Sellers/Details/5
         public ActionResult Details(int? id)
@@ -28,6 +77,7 @@ namespace Capstone.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            //Sellers sellers = db.Sellers.Where(s => s.SellersId == id).Include(a => a.ApplicationUser).FirstOrDefault();
             Sellers sellers = db.Sellers.Find(id);
             if (sellers == null)
             {
@@ -48,13 +98,25 @@ namespace Capstone.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SellersId,Firstname,Lastname,Address,City,State,ZipCode,UserPhoto,Lat,Lng,ApplicationUserId")] Sellers sellers)
+        public ActionResult Create([Bind(Include = "SellersId,Email,Firstname,Lastname,Address,City,State,ZipCode")] Sellers sellers)
         {
             if (ModelState.IsValid)
             {
+                byte[] imageData = null;
+                if (Request.Files.Count > 0)
+                {
+                    HttpPostedFileBase poImgFile = Request.Files["UserPhoto"];
+
+                    using (var binary = new BinaryReader(poImgFile.InputStream))
+                    {
+                        imageData = binary.ReadBytes(poImgFile.ContentLength);
+                    }
+                }
+
                 db.Sellers.Add(sellers);
+                sellers.UserPhoto = imageData;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details");
             }
 
             ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email", sellers.ApplicationUserId);

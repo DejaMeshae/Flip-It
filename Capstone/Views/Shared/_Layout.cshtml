@@ -17,16 +17,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Flip It!", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <img src="@Url.Action("UserPhotos", "Home" )" height="48" width="48" />
+                        <img src="@Url.Action("UserPhotos", "Sellers" )" height="50" width="48" />
                     </li>
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Create Your Profile", "Create", "Sellers")</li>
+                    <li>@Html.ActionLink("See Your Profile", "Details", "Sellers")</li>
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

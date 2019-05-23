@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -11,15 +12,21 @@ namespace Capstone.Models
         [Key]
         public int ItemsId { get; set; }
 
-        [Display(Name = "Item Name:")]
+        [Display(Name = "Item Name")]
         public string ItemName { get; set; }
-        public int Price { get; set; }
+        public decimal Price { get; set; }
         public string Category { get; set; }
 
-        [Display(Name = "Photo of Item:")]
-        public byte[] UserPhoto { get; set; }
+        [Display(Name = "Photo of Item")]
+        public byte[] ItemPhoto { get; set; }
         public string Condition { get; set; }
         public string Summary { get; set; }
+        public string Lat { get; set; }
+        public string Lng { get; set; }
 
+        [ForeignKey("Sellers")]
+        public int SellersId { get; set; }
+
+        public Sellers Sellers { get; set; }
     }
 }

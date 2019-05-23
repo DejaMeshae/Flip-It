@@ -7,9 +7,17 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Sellers</h4>
+    <h4>Your Account Information</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserPhoto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserPhoto)
+            <img src="@Url.Action("UserPhotos", "Sellers" )" height="188" width="108" />
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.ApplicationUser.Email)
         </dt>
@@ -64,30 +72,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.ZipCode)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UserPhoto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserPhoto)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Lat)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Lat)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Lng)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Lng)
         </dd>
 
     </dl>

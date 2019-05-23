@@ -35,12 +35,6 @@
         <th>
             @Html.DisplayNameFor(model => model.UserPhoto)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Lng)
-        </th>
         <th></th>
     </tr>
 
@@ -69,12 +63,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.UserPhoto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lat)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lng)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.SellersId }) |
