@@ -89,7 +89,7 @@ namespace Capstone.Controllers
         // POST: Items/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ItemsId,ItemName,Price,Category,Condition,Summary")] Items items)
+        public ActionResult Create([Bind(Include = "ItemName,Price,Category,Condition,Summary,ItemPhoto")] Items items)
         {
             if (ModelState.IsValid)
             {
@@ -105,8 +105,9 @@ namespace Capstone.Controllers
                 }
 
                 string CurrentUserId = User.Identity.GetUserId(); //user thats logged in now
+                
                 Sellers CurrentSellersInfo = db.Sellers.Where(s => s.ApplicationUserId == CurrentUserId).FirstOrDefault();
-                var ThisPersonitems = db.Items.Include(i => i.ItemsId);
+                items.SellersId = CurrentSellersInfo.SellersId;
                 db.Items.Add(items);
                 items.ItemPhoto = imageData;
                 db.SaveChanges();
