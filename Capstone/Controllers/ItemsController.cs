@@ -87,11 +87,9 @@ namespace Capstone.Controllers
         }
 
         // POST: Items/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ItemsId,ItemName,Price,Category,ItemPhoto,Condition,Summary")] Items items)
+        public ActionResult Create([Bind(Include = "ItemsId,ItemName,Price,Category,Condition,Summary")] Items items)
         {
             if (ModelState.IsValid)
             {
@@ -106,10 +104,13 @@ namespace Capstone.Controllers
                     }
                 }
 
+                string CurrentUserId = User.Identity.GetUserId(); //user thats logged in now
+                Sellers CurrentSellersInfo = db.Sellers.Where(s => s.ApplicationUserId == CurrentUserId).FirstOrDefault();
+                var ThisPersonitems = db.Items.Include(i => i.ItemsId);
                 db.Items.Add(items);
                 items.ItemPhoto = imageData;
                 db.SaveChanges();
-                return RedirectToAction("Details"); //after Seller creates a listing it should return them to a list of their items for sale
+                return RedirectToAction("Index"); //after Seller creates a listing it should return them to a list of their items for sale
             }
 
             return View(items);

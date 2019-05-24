@@ -15,23 +15,23 @@
     <h4>Edit Your Profile </h4>
     <hr />
     @*Profile picture*@
-    @*<div class="form-group">
+    <div class="form-group">
         @Html.LabelFor(model => model.UserPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.DisplayFor(model => model.UserPhoto)
-            <img src="@Url.Action("UserPhotos", "Sellers" )" height="188" width="108" />*@
-            @*@Html.EditorFor(model => model.UserPhoto, new { htmlAttributes = new { @class = "form-control" } })*@
-            @*@Html.ValidationMessageFor(model => model.UserPhoto, "", new { @class = "text-danger" })*@
-        @*</div>
-    </div>*@
+            <img src="@Url.Action("UserPhotos", "Sellers" )" height="188" width="108" />
+            @*@Html.EditorFor(model => model.UserPhoto, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.UserPhoto, "", new { @class = "text-danger" })*@
+        </div>
+    </div>
 
     @*upload a new profile picture*@
-    @*<div class="form-group">
+    <div class="form-group">
         @Html.LabelFor(m => m.UserPhoto, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             <input type="file" name="UserPhoto" id="fileUpload" accept=".png,.jpeg,.jpg,.gif,.tif" />
         </div>
-    </div>*@
+    </div>
 
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.SellersId)

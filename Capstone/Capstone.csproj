@@ -181,7 +181,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\APIKeys.cs" />
     <Compile Include="Controllers\BuyersController.cs" />
+    <Compile Include="Controllers\GeoLocationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -189,41 +191,25 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905211852133_CreatedUserAbstractClass.cs" />
-    <Compile Include="Migrations\201905211852133_CreatedUserAbstractClass.Designer.cs">
-      <DependentUpon>201905211852133_CreatedUserAbstractClass.cs</DependentUpon>
+    <Compile Include="Migrations\201905231928589_InitialMigration.cs" />
+    <Compile Include="Migrations\201905231928589_InitialMigration.Designer.cs">
+      <DependentUpon>201905231928589_InitialMigration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905212045118_AddedUserPhotoProperty.cs" />
-    <Compile Include="Migrations\201905212045118_AddedUserPhotoProperty.Designer.cs">
-      <DependentUpon>201905212045118_AddedUserPhotoProperty.cs</DependentUpon>
+    <Compile Include="Migrations\201905231946154_AddedItemPhotoToIdentyModel.cs" />
+    <Compile Include="Migrations\201905231946154_AddedItemPhotoToIdentyModel.Designer.cs">
+      <DependentUpon>201905231946154_AddedItemPhotoToIdentyModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905212101252_CreatedBuyerAndSellerModel.cs" />
-    <Compile Include="Migrations\201905212101252_CreatedBuyerAndSellerModel.Designer.cs">
-      <DependentUpon>201905212101252_CreatedBuyerAndSellerModel.cs</DependentUpon>
+    <Compile Include="Migrations\201905232331252_FixedFKIssue.cs" />
+    <Compile Include="Migrations\201905232331252_FixedFKIssue.Designer.cs">
+      <DependentUpon>201905232331252_FixedFKIssue.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905221412002_RmovedUsersModel.cs" />
-    <Compile Include="Migrations\201905221412002_RmovedUsersModel.Designer.cs">
-      <DependentUpon>201905221412002_RmovedUsersModel.cs</DependentUpon>
+    <Compile Include="Migrations\201905232351224_FixedFKIssueAgain.cs" />
+    <Compile Include="Migrations\201905232351224_FixedFKIssueAgain.Designer.cs">
+      <DependentUpon>201905232351224_FixedFKIssueAgain.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905221418443_AddedDBSetsToIdentityModel.cs" />
-    <Compile Include="Migrations\201905221418443_AddedDBSetsToIdentityModel.Designer.cs">
-      <DependentUpon>201905221418443_AddedDBSetsToIdentityModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905221516052_CreatedItemsModel.cs" />
-    <Compile Include="Migrations\201905221516052_CreatedItemsModel.Designer.cs">
-      <DependentUpon>201905221516052_CreatedItemsModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905221524540_ChangedAModel.cs" />
-    <Compile Include="Migrations\201905221524540_ChangedAModel.Designer.cs">
-      <DependentUpon>201905221524540_ChangedAModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905230030091_AddedMorePropertiesToItemsModel.cs" />
-    <Compile Include="Migrations\201905230030091_AddedMorePropertiesToItemsModel.Designer.cs">
-      <DependentUpon>201905230030091_AddedMorePropertiesToItemsModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905231412054_ChangedPropertiesNameInItemsModel.cs" />
-    <Compile Include="Migrations\201905231412054_ChangedPropertiesNameInItemsModel.Designer.cs">
-      <DependentUpon>201905231412054_ChangedPropertiesNameInItemsModel.cs</DependentUpon>
+    <Compile Include="Migrations\201905240046015_ChangedItemsModel.cs" />
+    <Compile Include="Migrations\201905240046015_ChangedItemsModel.Designer.cs">
+      <DependentUpon>201905240046015_ChangedItemsModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -311,6 +297,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\GeoLocation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -326,32 +313,20 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905211852133_CreatedUserAbstractClass.resx">
-      <DependentUpon>201905211852133_CreatedUserAbstractClass.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905231928589_InitialMigration.resx">
+      <DependentUpon>201905231928589_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905212045118_AddedUserPhotoProperty.resx">
-      <DependentUpon>201905212045118_AddedUserPhotoProperty.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905231946154_AddedItemPhotoToIdentyModel.resx">
+      <DependentUpon>201905231946154_AddedItemPhotoToIdentyModel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905212101252_CreatedBuyerAndSellerModel.resx">
-      <DependentUpon>201905212101252_CreatedBuyerAndSellerModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905232331252_FixedFKIssue.resx">
+      <DependentUpon>201905232331252_FixedFKIssue.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905221412002_RmovedUsersModel.resx">
-      <DependentUpon>201905221412002_RmovedUsersModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905232351224_FixedFKIssueAgain.resx">
+      <DependentUpon>201905232351224_FixedFKIssueAgain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905221418443_AddedDBSetsToIdentityModel.resx">
-      <DependentUpon>201905221418443_AddedDBSetsToIdentityModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905221516052_CreatedItemsModel.resx">
-      <DependentUpon>201905221516052_CreatedItemsModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905221524540_ChangedAModel.resx">
-      <DependentUpon>201905221524540_ChangedAModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905230030091_AddedMorePropertiesToItemsModel.resx">
-      <DependentUpon>201905230030091_AddedMorePropertiesToItemsModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905231412054_ChangedPropertiesNameInItemsModel.resx">
-      <DependentUpon>201905231412054_ChangedPropertiesNameInItemsModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905240046015_ChangedItemsModel.resx">
+      <DependentUpon>201905240046015_ChangedItemsModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

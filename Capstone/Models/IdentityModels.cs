@@ -14,6 +14,7 @@ namespace Capstone.Models
         public DbSet<Items> Items { get; set; }
 
         public byte[] UserPhoto { get; set; }
+        public byte[] ItemPhoto { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -34,7 +35,7 @@ namespace Capstone.Models
         {
             return new ApplicationDbContext();
         }
-
+        //Don't think I need these, can delete later
         public System.Data.Entity.DbSet<Capstone.Models.Sellers> Sellers { get; set; }
 
         public System.Data.Entity.DbSet<Capstone.Models.Buyers> Buyers { get; set; }

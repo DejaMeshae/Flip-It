@@ -7,13 +7,13 @@ namespace Capstone.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class CreatedUserAbstractClass : IMigrationMetadata
+    public sealed partial class AddedItemPhotoToIdentyModel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreatedUserAbstractClass));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedItemPhotoToIdentyModel));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905211852133_CreatedUserAbstractClass"; }
+            get { return "201905231946154_AddedItemPhotoToIdentyModel"; }
         }
         
         string IMigrationMetadata.Source

@@ -7,13 +7,13 @@ namespace Capstone.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddedDBSetsToIdentityModel : IMigrationMetadata
+    public sealed partial class ChangedItemsModel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedDBSetsToIdentityModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangedItemsModel));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905221418443_AddedDBSetsToIdentityModel"; }
+            get { return "201905240046015_ChangedItemsModel"; }
         }
         
         string IMigrationMetadata.Source

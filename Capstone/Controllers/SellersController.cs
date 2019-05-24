@@ -23,8 +23,8 @@ namespace Capstone.Controllers
             //var sellers = db.Sellers.Include(s => s.ApplicationUser); display a list of users
             string CurrentUserID = User.Identity.GetUserId(); //User ID thats logged in now
             var CurrentSeller = db.Sellers.Where(e => e.ApplicationUserId == CurrentUserID).FirstOrDefault(); //comparing the user thats signed in ID to the ID in the database  
-            var yourItemForSale = db.Items.Where(i => i.SellersId == CurrentSeller.SellersId).ToList(); //comparing the sellers id of the item for sale to the id of the person thats logged in
-            return View(yourItemForSale); //IF NOT WORKING (ERROR LINE 26) MAKE SURE THAT SELLER CREATED A LISTING IN THE FIRST PLACE
+            //var yourItemForSale = db.Items.Where(i => i.SellersId == CurrentSeller.SellersId).ToList(); //comparing the sellers id of the item for sale to the id of the person thats logged in
+            return View(); //IF NOT WORKING (ERROR LINE 26) MAKE SURE THAT SELLER CREATED A LISTING IN THE FIRST PLACE
         }
 
         public FileContentResult UserPhotos()
@@ -88,16 +88,14 @@ namespace Capstone.Controllers
         // GET: Sellers/Create
         public ActionResult Create()
         {
-            ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "Email");
             return View();
         }
 
         // POST: Sellers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SellersId,Email,Firstname,Lastname,Address,City,State,ZipCode")] Sellers sellers)
+        public ActionResult Create([Bind(Include = "SellersId,Email,Firstname,Lastname,Address,City,State,ZipCode", Exclude ="UserPhoto")] Sellers sellers)
         {
             if (ModelState.IsValid)
             {
@@ -111,7 +109,7 @@ namespace Capstone.Controllers
                         imageData = binary.ReadBytes(poImgFile.ContentLength);
                     }
                 }
-
+                sellers.ApplicationUserId = User.Identity.GetUserId();
                 db.Sellers.Add(sellers);
                 sellers.UserPhoto = imageData;
                 db.SaveChanges();

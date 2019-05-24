@@ -24,9 +24,11 @@ namespace Capstone.Models
         public string Lat { get; set; }
         public string Lng { get; set; }
 
+  
+
         [ForeignKey("Sellers")]
         public int SellersId { get; set; }
+        public virtual Sellers Sellers { get; set; }
 
-        public Sellers Sellers { get; set; }
     }
 }

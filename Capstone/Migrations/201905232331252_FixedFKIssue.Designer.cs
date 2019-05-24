@@ -7,13 +7,13 @@ namespace Capstone.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddedMorePropertiesToItemsModel : IMigrationMetadata
+    public sealed partial class FixedFKIssue : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedMorePropertiesToItemsModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FixedFKIssue));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905230030091_AddedMorePropertiesToItemsModel"; }
+            get { return "201905232331252_FixedFKIssue"; }
         }
         
         string IMigrationMetadata.Source
