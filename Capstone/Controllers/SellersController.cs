@@ -7,9 +7,10 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Capstone.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Capstone.Models;
+using System.Data.Entity.Infrastructure;
 
 namespace Capstone.Controllers
 {
@@ -27,7 +28,7 @@ namespace Capstone.Controllers
             return View(); //IF NOT WORKING (ERROR LINE 26) MAKE SURE THAT SELLER CREATED A LISTING IN THE FIRST PLACE
         }
 
-        public FileContentResult UserPhotos()
+     public FileContentResult UserPhotos()
         {
             if (User.Identity.IsAuthenticated)
             {
@@ -69,6 +70,7 @@ namespace Capstone.Controllers
         }
 
 
+
         // GET: Sellers/Details/5
         public ActionResult Details(int? id)
         {
@@ -77,7 +79,8 @@ namespace Capstone.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Sellers sellers = db.Sellers.Where(s => s.SellersId == id).Include(a => a.ApplicationUser).FirstOrDefault();
-            Sellers sellers = db.Sellers.Find(id);
+            Sellers sellers = db.Sellers.Include(s => s.Files).SingleOrDefault(s => s.SellersId == id);
+            //Sellers sellers = db.Sellers.Find(id);
             if (sellers == null)
             {
                 return HttpNotFound();
@@ -95,27 +98,39 @@ namespace Capstone.Controllers
         // POST: Sellers/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SellersId,Email,Firstname,Lastname,Address,City,State,ZipCode", Exclude ="UserPhoto")] Sellers sellers)
+        public ActionResult Create([Bind(Include = "SellersId,Email,Firstname,Lastname,Address,City,State,ZipCode")] Sellers sellers, HttpPostedFileBase upload)
         {
-            if (ModelState.IsValid)
+            try
             {
-                byte[] imageData = null;
-                if (Request.Files.Count > 0)
+                if (ModelState.IsValid)
                 {
-                    HttpPostedFileBase poImgFile = Request.Files["UserPhoto"];
-
-                    using (var binary = new BinaryReader(poImgFile.InputStream))
+                    if (upload != null && upload.ContentLength > 0)
                     {
-                        imageData = binary.ReadBytes(poImgFile.ContentLength);
-                    }
-                }
-                sellers.ApplicationUserId = User.Identity.GetUserId();
-                db.Sellers.Add(sellers);
-                sellers.UserPhoto = imageData;
-                db.SaveChanges();
-                return RedirectToAction("Details", new { id = sellers.SellersId });
-            }
+                        var avatar = new Models.File //had to add Model in front instead of just File like in UploadPhoto 
+                        {
+                            FileName = System.IO.Path.GetFileName(upload.FileName),
+                            FileType = FileType.Avatar,
+                            ContentType = upload.ContentType
+                        };
+                        using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                        {
+                            avatar.Content = reader.ReadBytes(upload.ContentLength);
+                        }
+                        sellers.Files = new List<Models.File> { avatar };
 
+                    }
+                    sellers.ApplicationUserId = User.Identity.GetUserId();
+                    db.Sellers.Add(sellers);
+                    db.SaveChanges();
+                    //return RedirectToAction("Index", "Items");
+                    return RedirectToAction("Details", new { id = sellers.SellersId }); //or redirect to details of the user
+                }
+            }
+            catch (RetryLimitExceededException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
             ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email", sellers.ApplicationUserId);
             return View(sellers);
         }

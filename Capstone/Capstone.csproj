@@ -183,6 +183,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\APIKeys.cs" />
     <Compile Include="Controllers\BuyersController.cs" />
+    <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\GeoLocationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
@@ -211,9 +212,31 @@
     <Compile Include="Migrations\201905240046015_ChangedItemsModel.Designer.cs">
       <DependentUpon>201905240046015_ChangedItemsModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905242132090_AddedFileandFileTypeModels.cs" />
+    <Compile Include="Migrations\201905242132090_AddedFileandFileTypeModels.Designer.cs">
+      <DependentUpon>201905242132090_AddedFileandFileTypeModels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905242135430_AddedFKSellersIdFileModel.cs" />
+    <Compile Include="Migrations\201905242135430_AddedFKSellersIdFileModel.Designer.cs">
+      <DependentUpon>201905242135430_AddedFKSellersIdFileModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905242136377_AddedFKItemsIdFileModel.cs" />
+    <Compile Include="Migrations\201905242136377_AddedFKItemsIdFileModel.Designer.cs">
+      <DependentUpon>201905242136377_AddedFKItemsIdFileModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905242138597_AddedICollectionOfFilesToItemsModel.cs" />
+    <Compile Include="Migrations\201905242138597_AddedICollectionOfFilesToItemsModel.Designer.cs">
+      <DependentUpon>201905242138597_AddedICollectionOfFilesToItemsModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905242217299_CommentedOutItemsFKFromFilesModel.cs" />
+    <Compile Include="Migrations\201905242217299_CommentedOutItemsFKFromFilesModel.Designer.cs">
+      <DependentUpon>201905242217299_CommentedOutItemsFKFromFilesModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Buyers.cs" />
+    <Compile Include="Models\File.cs" />
+    <Compile Include="Models\FileType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Items.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -297,6 +320,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Files\" />
     <Folder Include="Views\GeoLocation\" />
   </ItemGroup>
   <ItemGroup>
@@ -327,6 +351,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905240046015_ChangedItemsModel.resx">
       <DependentUpon>201905240046015_ChangedItemsModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905242132090_AddedFileandFileTypeModels.resx">
+      <DependentUpon>201905242132090_AddedFileandFileTypeModels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905242135430_AddedFKSellersIdFileModel.resx">
+      <DependentUpon>201905242135430_AddedFKSellersIdFileModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905242136377_AddedFKItemsIdFileModel.resx">
+      <DependentUpon>201905242136377_AddedFKItemsIdFileModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905242138597_AddedICollectionOfFilesToItemsModel.resx">
+      <DependentUpon>201905242138597_AddedICollectionOfFilesToItemsModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905242217299_CommentedOutItemsFKFromFilesModel.resx">
+      <DependentUpon>201905242217299_CommentedOutItemsFKFromFilesModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

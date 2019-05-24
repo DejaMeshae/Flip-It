@@ -25,10 +25,10 @@ namespace Capstone.Models
         public string Lng { get; set; }
 
   
-
         [ForeignKey("Sellers")]
         public int SellersId { get; set; }
         public virtual Sellers Sellers { get; set; }
 
+        public virtual ICollection<File> Files { get; set; }
     }
 }

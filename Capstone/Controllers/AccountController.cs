@@ -149,6 +149,8 @@ namespace Capstone.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register([Bind(Exclude = "UserPhoto")]RegisterViewModel model)
+         //public async Task<ActionResult> Register(RegisterViewModel model)
+
         {
             if (ModelState.IsValid)
             {

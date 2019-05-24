@@ -83,6 +83,7 @@ namespace Capstone.Controllers
         // GET: Items/Create
         public ActionResult Create()
         {
+            ViewBag.ItemsId = new SelectList(db.Items, "Id", "ItemPhoto");
             return View();
         }
 
@@ -105,11 +106,10 @@ namespace Capstone.Controllers
                 }
 
                 string CurrentUserId = User.Identity.GetUserId(); //user thats logged in now
-                
-                Sellers CurrentSellersInfo = db.Sellers.Where(s => s.ApplicationUserId == CurrentUserId).FirstOrDefault();
-                items.SellersId = CurrentSellersInfo.SellersId;
-                db.Items.Add(items);
-                items.ItemPhoto = imageData;
+                Sellers CurrentSellersInfo = db.Sellers.Where(s => s.ApplicationUserId == CurrentUserId).FirstOrDefault(); //comparing that user to the ApplicationUserId thats in the database and if its the same then grab them 
+                items.SellersId = CurrentSellersInfo.SellersId; //connecting the sellersId of that item to the current user thats signed in Id
+                db.Items.Add(items); //add the entire item to the items database
+                items.ItemPhoto = imageData; //tie the image in too
                 db.SaveChanges();
                 return RedirectToAction("Index"); //after Seller creates a listing it should return them to a list of their items for sale
             }
