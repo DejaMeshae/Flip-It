@@ -264,6 +264,7 @@
     <Content Include="Images\img_weather_clouds.jpg" />
     <Content Include="Images\img_weather_cloud_sun.jpg" />
     <Content Include="Images\img_weather_sun.jpg" />
+    <Content Include="Images\loading.gif" />
     <Content Include="Images\Milwaukee-skyline.jpg" />
     <Content Include="Images\Question_Mark.png" />
     <Content Include="Scripts\bootstrap.js" />
