@@ -232,6 +232,14 @@
     <Compile Include="Migrations\201905242217299_CommentedOutItemsFKFromFilesModel.Designer.cs">
       <DependentUpon>201905242217299_CommentedOutItemsFKFromFilesModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905250142553_AddedBothToFilesModel.cs" />
+    <Compile Include="Migrations\201905250142553_AddedBothToFilesModel.Designer.cs">
+      <DependentUpon>201905250142553_AddedBothToFilesModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905250148023_BackToItemsFKCommentedOut.cs" />
+    <Compile Include="Migrations\201905250148023_BackToItemsFKCommentedOut.Designer.cs">
+      <DependentUpon>201905250148023_BackToItemsFKCommentedOut.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Buyers.cs" />
@@ -317,11 +325,11 @@
     <Content Include="Views\Items\Details.cshtml" />
     <Content Include="Views\Items\Edit.cshtml" />
     <Content Include="Views\Items\Index.cshtml" />
+    <Content Include="Views\Items\BuyersDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Files\" />
-    <Folder Include="Views\GeoLocation\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -366,6 +374,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905242217299_CommentedOutItemsFKFromFilesModel.resx">
       <DependentUpon>201905242217299_CommentedOutItemsFKFromFilesModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905250142553_AddedBothToFilesModel.resx">
+      <DependentUpon>201905250142553_AddedBothToFilesModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905250148023_BackToItemsFKCommentedOut.resx">
+      <DependentUpon>201905250148023_BackToItemsFKCommentedOut.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

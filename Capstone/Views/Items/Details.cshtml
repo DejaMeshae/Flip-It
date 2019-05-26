@@ -4,20 +4,31 @@
     ViewBag.Title = "Details";
 }
 
+
 <h2>Details</h2>
 
 <div>
-    <h4>Items</h4>
+    <h4>Item details</h4>
     <hr />
-    <dl class="dl-horizontal">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ItemPhoto)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ItemPhoto)
-            <img src="@Url.Action("ItemPhotos", "Items" )" height="198" width="128" />
-        </dd>
+    <dl class="dl-horizontal">
+        @*@if (Model.Files.Any(f => f.FileType == Capstone.Models.FileType.Avatar))
+            {
+                <dt>
+                    Profile Picture
+                </dt>
+                <dd>
+                    <img src="~/File?id=@Model.Files.First(f => f.FileType == Capstone.Models.FileType.Avatar).FileId" alt="avatar" style="width:160px;height:220px;" />
+                </dd>
+            }*@
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.ItemPhoto)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ItemPhoto)
+                <img src="@Url.Action("ItemPhotos", "Items" )" height="198" width="128" />
+            </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.ItemName)
@@ -63,5 +74,5 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ItemsId }) |
-    @Html.ActionLink("Back to List Of All Items", "Index")
+    @Html.ActionLink("Back to List Of All Items", "Index")       |
 </p>

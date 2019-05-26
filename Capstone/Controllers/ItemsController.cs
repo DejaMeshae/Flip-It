@@ -80,6 +80,21 @@ namespace Capstone.Controllers
             return View(items);
         }
 
+        //GET Items/Details/5
+        public ActionResult BuyersDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Items items = db.Items.Find(id);
+            if (items == null)
+            {
+                return HttpNotFound();
+            }
+            return View(items);
+        }
+
         // GET: Items/Create
         public ActionResult Create()
         {
@@ -92,29 +107,33 @@ namespace Capstone.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ItemName,Price,Category,Condition,Summary,ItemPhoto")] Items items)
         {
-            if (ModelState.IsValid)
-            {
-                byte[] imageData = null;
-                if (Request.Files.Count > 0)
-                {
-                    HttpPostedFileBase poImgFile = Request.Files["ItemPhoto"];
+            //if (ModelState.IsValid)
+            //{
+            //    byte[] imageData = null;
+            //    if (Request.Files.Count > 0)
+            //    {
+            //        HttpPostedFileBase poImgFile = Request.Files["UserPhoto"];
 
-                    using (var binary = new BinaryReader(poImgFile.InputStream))
-                    {
-                        imageData = binary.ReadBytes(poImgFile.ContentLength);
-                    }
-                }
+            //        using (var reader = new System.IO.BinaryReader(poImgFile.InputStream))
+            //        {
+            //            imageData = reader.ReadBytes(poImgFile.ContentLength);
+            //        }
+            //    }
 
                 string CurrentUserId = User.Identity.GetUserId(); //user thats logged in now
                 Sellers CurrentSellersInfo = db.Sellers.Where(s => s.ApplicationUserId == CurrentUserId).FirstOrDefault(); //comparing that user to the ApplicationUserId thats in the database and if its the same then grab them 
                 items.SellersId = CurrentSellersInfo.SellersId; //connecting the sellersId of that item to the current user thats signed in Id
+                var lat = db.Sellers.Where(s => s.SellersId == items.SellersId).Select(i => i.Lat).FirstOrDefault(); //getting the lat of the seller
+                var lng = db.Sellers.Where(s => s.SellersId == items.SellersId).Select(i => i.Lng).FirstOrDefault(); //getting the lng of the seller
+                items.Lat = lat;
+                items.Lng = lng;
                 db.Items.Add(items); //add the entire item to the items database
-                items.ItemPhoto = imageData; //tie the image in too
+                //items.ItemPhoto = imageData; //tie the image in too
                 db.SaveChanges();
-                return RedirectToAction("Index"); //after Seller creates a listing it should return them to a list of their items for sale
-            }
+                return RedirectToAction("Index", "Sellers"); //after Seller creates a listing it should return them to a list of their items for sale
+            //}
 
-            return View(items);
+            //return View(items);
         }
 
         // GET: Items/Edit/5

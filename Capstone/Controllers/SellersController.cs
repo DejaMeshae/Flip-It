@@ -24,8 +24,9 @@ namespace Capstone.Controllers
             //var sellers = db.Sellers.Include(s => s.ApplicationUser); display a list of users
             string CurrentUserID = User.Identity.GetUserId(); //User ID thats logged in now
             var CurrentSeller = db.Sellers.Where(e => e.ApplicationUserId == CurrentUserID).FirstOrDefault(); //comparing the user thats signed in ID to the ID in the database  
-            //var yourItemForSale = db.Items.Where(i => i.SellersId == CurrentSeller.SellersId).ToList(); //comparing the sellers id of the item for sale to the id of the person thats logged in
-            return View(); //IF NOT WORKING (ERROR LINE 26) MAKE SURE THAT SELLER CREATED A LISTING IN THE FIRST PLACE
+            List<Items> SellerItems = db.Items.Where(i => i.SellersId == CurrentSeller.SellersId).ToList();
+            //var yourItemForSale = db.Sellers.Where(i => i.SellersId == CurrentSeller.SellersId).ToList(); //comparing the sellers id of the item for sale to the id of the person thats logged in
+            return View("Index", SellerItems); //IF NOT WORKING (ERROR LINE 26) MAKE SURE THAT SELLER CREATED A LISTING IN THE FIRST PLACE
         }
 
      public FileContentResult UserPhotos()
@@ -104,22 +105,27 @@ namespace Capstone.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (upload != null && upload.ContentLength > 0)
-                    {
-                        var avatar = new Models.File //had to add Model in front instead of just File like in UploadPhoto 
-                        {
-                            FileName = System.IO.Path.GetFileName(upload.FileName),
-                            FileType = FileType.Avatar,
-                            ContentType = upload.ContentType
-                        };
-                        using (var reader = new System.IO.BinaryReader(upload.InputStream))
-                        {
-                            avatar.Content = reader.ReadBytes(upload.ContentLength);
-                        }
-                        sellers.Files = new List<Models.File> { avatar };
+                    //if (upload != null && upload.ContentLength > 0)
+                    //{
+                    //    var avatar = new Models.File //had to add Model in front instead of just File like in UploadPhoto 
+                    //    {
+                    //        FileName = System.IO.Path.GetFileName(upload.FileName),
+                    //        FileType = FileType.Avatar,
+                    //        ContentType = upload.ContentType
+                    //    };
+                    //    using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                    //    {
+                    //        avatar.Content = reader.ReadBytes(upload.ContentLength);
+                    //    }
+                    //    sellers.Files = new List<Models.File> { avatar };
 
-                    }
+                    //}
                     sellers.ApplicationUserId = User.Identity.GetUserId();
+                    string address = (sellers.Address + "+" + sellers.City + "+" + sellers.State + "+" + sellers.ZipCode);
+                    GeoLocationController geoLocation = new GeoLocationController();
+                    geoLocation.SendRequest(address);
+                    sellers.Lat = geoLocation.latitude;
+                    sellers.Lng = geoLocation.longitude;
                     db.Sellers.Add(sellers);
                     db.SaveChanges();
                     //return RedirectToAction("Index", "Items");
