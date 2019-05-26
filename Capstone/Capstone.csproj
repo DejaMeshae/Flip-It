@@ -261,6 +261,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\img_weather_clouds.jpg" />
+    <Content Include="Images\img_weather_cloud_sun.jpg" />
+    <Content Include="Images\img_weather_sun.jpg" />
+    <Content Include="Images\Milwaukee-skyline.jpg" />
     <Content Include="Images\Question_Mark.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

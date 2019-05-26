@@ -3,9 +3,32 @@
 @{
     ViewBag.Title = "Index";
 }
+ <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+<div class="w3-card-4 w3-margin" style="width:50%"><center>
+    <div class="w3-display-container w3-text-white">
+        <img src="~/Images/Milwaukee-skyline.jpg" alt="Lights" style="width:100%">
+        <div class="w3-xlarge w3-display-bottomleft w3-padding">Milwaukee 70&deg; F</div>
+    </div>
+    <div class="w3-row">
+        <div class="w3-third w3-center">
+            <h3>MON</h3>
+            <img src="~/Images/img_weather_sun.jpg" alt="sun" style="width:80px">
+        </div>
+        <div class="w3-third w3-center">
+            <h3>TUE</h3>
+            <img src="~/Images/img_weather_cloud_sun.jpg" alt="cloud" style="width:80px">
+        </div>
+        <div class="w3-third w3-center w3-margin-bottom">
+            <h3>WED</h3>
+            <img src="~/Images/img_weather_sun.jpg" alt="clouds" style="width:80px">
+        </div>
+    </div>
+</center>
+</div>
 
 <h2>All Items for Sale</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -32,32 +55,33 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ItemPhoto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ItemName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Condition)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Summary)
-        </td>
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id=item.ItemsId }) |*@
-            @Html.ActionLink("Details", "BuyersDetails", new { id=item.ItemsId }) 
-            @*@Html.ActionLink("Delete", "Delete", new { id=item.ItemsId })*@
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemPhoto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Condition)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Summary)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.ItemsId }) |*@
+                @Html.ActionLink("Details", "BuyersDetails", new { id = item.ItemsId })
+                @*@Html.ActionLink("Delete", "Delete", new { id=item.ItemsId })*@
+            </td>
+        </tr>
+    }
 
 </table>
