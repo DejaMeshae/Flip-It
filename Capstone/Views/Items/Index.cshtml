@@ -6,54 +6,6 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <style>
-    /*body {
-         background: #111 no-repeat;
-         background-image: -webkit-gradient(radial, 50% 0, 150, 50% 0, 300, from(#444), to(#111));
-     }*/
-
-    /*h1, h2, h3 {
-         text-align: center;
-         color: #FFF;
-         margin: 5px 0;
-     }
-
-     h1 {
-         font-size: 30px;
-     }
-
-     h2 a {
-         font-size: 25px;
-         color: #0184e3;
-         text-decoration: none;
-     }*/
-
-    /*h3 {
-         font-size: 23px;
-         border-bottom: solid 3px #CCC;
-         padding-bottom: 10px;
-     }
-
-         h3 a {
-             color: #00e8ff;
-             text-decoration: none;
-         }
-
-             h3 a:hover, h2 a:hover {
-                 text-decoration: underline;
-             }*/
-
-    /*.container {
-         width: 800px;
-         margin: auto;
-         color: #FFF;
-         font-size: 25px;
-     }
-
-         .container #content {
-             border: dashed 2px #CCC;
-             padding: 10px;
-         }*/
-
     #reset {
         padding: 5px 10px;
         background: #ffffff;
@@ -62,61 +14,62 @@
         cursor: pointer;
     }
 
-        #reset:hover {
-            color: #28c8d3;
-            background: #28c8d3;
-        }
+    #reset:hover {
+        color: #28c8d3;
+        background: #28c8d3;
+    }
 
     #apiDiv {
         padding-left: 20px;
     }
-        /*button details*/
-        #apiDiv select, #apiDiv button {
-            font-size: 15px;
-        }
+    /*button details*/
+    #apiDiv select, #apiDiv button {
+        font-size: 15px;
+    }
 
-        #apiDiv h4 {
-            margin: 10px 0;
-        }
+    #apiDiv h4 {
+        margin: 10px 0;
+    }
 
-        #apiDiv .textAlignCenter {
-            text-align: center;
-        }
+    #apiDiv .textAlignCenter {
+        text-align: center;
+    }
 
-            #apiDiv .textAlignCenter img {
-                display: none;
-                width: 100px;
-            }
-        /*table*/
-        #apiDiv #message table {
-            width: 100%;
-            border: double 1px #28c8d3;
-            background: #28c8d3;
-        }
-
-            #apiDiv #message table th {
-                text-align: left;
-                background: #28c8d3;
-            }
+    #apiDiv .textAlignCenter img {
+        display: none;
+        width: 100px;
+    }
+    /*Weather table when a city is selected*/
+    #apiDiv #message table {
+        width: 52%;
+        border: double 1px #28c8d3;
+        background: #28c8d3;
+    }
+    #apiDiv #message table th {
+        text-align: left;
+        background: #28c8d3;
+    }
 </style>
 
+
+@*Milwaukee skyline div*@
 <div class="w3-card-4 w3-margin" style="width:50%">
     <center>
         <div class="w3-display-container w3-text-white">
             <img src="~/Images/Milwaukee-skyline.jpg" alt="Lights" style="width:100%">
-            <div class="w3-xlarge w3-display-bottomleft w3-padding">Milwaukee 70&deg; F</div>
+            <div class="w3-xlarge w3-display-bottomleft w3-padding">Milwaukee 60&deg; F</div>
         </div>
         <div class="w3-row">
             <div class="w3-third w3-center">
-                <h3>MON</h3>
+                <h3>TUE</h3>
                 <img src="~/Images/img_weather_sun.jpg" alt="sun" style="width:80px">
             </div>
             <div class="w3-third w3-center">
-                <h3>TUE</h3>
+                <h3>WED</h3>
                 <img src="~/Images/img_weather_cloud_sun.jpg" alt="cloud" style="width:80px">
             </div>
             <div class="w3-third w3-center w3-margin-bottom">
-                <h3>WED</h3>
+                <h3>THURS</h3>
                 <img src="~/Images/img_weather_sun.jpg" alt="clouds" style="width:80px">
             </div>
         </div>
@@ -127,106 +80,137 @@
 <div class="dl-horizontal">
     <div id="apiDiv">
         <h4>Select the City for Weather Report</h4>
+        @*<span>
+                <input type="radio" id="cityRadio"
+                       name="cityRadio" value="5263058">Your weather
+            </span>*@
         <span>
             <input type="radio" id="cityRadio"
-                   name="cityRadio" value="5263058">Your weather
-            </span>
-            <span>
-                <input type="radio" id="cityRadio"
-                       name="cityRadio" value="5263058">Milwaukee
-            </span>
-            <span>
-                <input type="radio" id="cityRadio"
-                       name="cityRadio" value="5265228">Oak Creek
-            </span>
-            <span>
-                <input type="radio" id="cityRadio"
-                       name="cityRadio" value="4885689">Brookfield
-            </span>
-            <span>
-                <input type="radio" id="cityRadio"
-                       name="cityRadio" value="5278052">Waukesha
-            </span>
-            <span>
-                <input type="radio" id="cityRadio"
-                       name="cityRadio" value="4163140">Madison
-            </span>
-            <button id="submit">Submit</button>
-            <div class="textAlignCenter">
-                <img src="~/Images/loading.gif" />
-            </div>
-            <div id="message"></div>
+                   name="cityRadio" value="5263058">Milwaukee
+        </span>
+        <span>
+            <input type="radio" id="cityRadio"
+                   name="cityRadio" value="5265228">Oak Creek
+        </span>
+        <span>
+            <input type="radio" id="cityRadio"
+                   name="cityRadio" value="4885689">Brookfield
+        </span>
+        <span>
+            <input type="radio" id="cityRadio"
+                   name="cityRadio" value="5278052">Waukesha
+        </span>
+        <span>
+            <input type="radio" id="cityRadio"
+                   name="cityRadio" value="5268249">Racine
+        </span>
+        <span>
+            <input type="radio" id="cityRadio"
+                   name="cityRadio" value="5261457">Madison
+        </span>
+        <button id="submit">Submit</button>
+        <div class="textAlignCenter">
+            <img src="~/Images/loading.gif" />
+        </div>
+        <div id="message"></div>
     </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
-</script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
 <script>
+    //jQuery for WeatherAPI
     $(document).ready(function () {
         $("input[id='cityRadio']").change(function () {
             $(this).parents("#apiDiv").find
                 ("span").css("background", "none");
-            $(this).parent().css("background", "#4CAF50");
+            $(this).parent().css("background", "#28c8d3");
         });
 
-        $("#submit").click(function (e) {
-            var validate = Validate();
-            $("#message").html(validate);
-            if (validate.length == 0) {
-                $.post("http://api.openweathermap.org/data/2.5/weather?id=" +
-                    $("input[id='cityRadio']:checked").val() +
-                    "&appid=09f387e04e9b4cddd37e514e35f7fddc&units=metric",
-                    function (result, status, xhr) {
-                        var table = $("<table><tr><th> Weather Description</th ></tr > ");
+    $("#submit").click(function (e) {
+        var validate = Validate();
+    $("#message").html(validate);
+        if (validate.length == 0) {
+        $.post("http://api.openweathermap.org/data/2.5/weather?id=" +
+            $("input[id='cityRadio']:checked").val() +
+            "&appid=09f387e04e9b4cddd37e514e35f7fddc&units=Imperial",
+            function (result, status, xhr) {
+                var table = $("<table><tr><th> Weather Description</th ></tr > ");
 
-                        table.append("<tr><td>City:</td><td> " + result["name"] + "</td ></tr > ");
-                        table.append("<tr><td>Country:</td><td> " + result["sys"]["country"] + "</td></tr>");
-                        table.append("<tr><td>Wind:</td><td> " + result["wind"]["speed"] + " Km/h</td></tr>");
-                        table.append("<tr><td>Current Temperature:</td><td> " + result["main"]["temp"] + " °C</td></tr>");
-                        table.append("<tr><td>Humidity:</td><td>" + result["main"]["humidity"] + "</td></tr>");
-                        table.append("<tr><td>Weather:</td><td>" + result["weather"][0]["description"] + "</td></tr>");
+                table.append("<tr><td>Current Temperature:</td><td> " + result["main"]["temp_max"] + " °F</td></tr>");
+                table.append("<tr><td>Weather:</td><td>" + result["weather"][0]["description"] + "</td></tr>");
+                //table.append("<tr><td>Wind:</td><td> " + result["wind"]["speed"] + " Km/h</td></tr>");
+                table.append("<tr><td>Humidity:</td><td>" + result["main"]["humidity"] + " %</td></tr>");
 
-                        $("#message").html(table);
-                    }
-                ).fail(function (xhr, status, error) {
-                    alert("Result: " + status + " " + error + " " +
-                        xhr.status + " " + xhr.statusText);
-                });
+                $("#message").html(table);
             }
+        ).fail(function (xhr, status, error) {
+            alert("Result: " + status + " " + error + " " +
+                xhr.status + " " + xhr.statusText);
         });
+    }
+});
 
-        $(document).ajaxStart(function () {
-            $("img").show();
-        });
-
-        $(document).ajaxStop(function () {
-            $("img").hide();
-        });
-
-        function Validate() {
-            var errorMessage = "";
-            if ($("input[id='cityRadio']").is(":checked") == false) {
-                errorMessage += "? Select City";
-            }
-            return errorMessage;
-        }
+    $(document).ajaxStart(function () {
+        $("img").show();
     });
+
+    $(document).ajaxStop(function () {
+        $("img").hide();
+    });
+
+    function Validate() {
+        var errorMessage = "";
+        if ($("input[id='cityRadio']").is(":checked") == false) {
+        errorMessage += "? Select City";
+    }
+    return errorMessage;
+}
+});
 </script>
 
-
+<br />
 <h2>All Items for Sale</h2>
+
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @using (Html.BeginForm("Index", "Items", FormMethod.Get))
+    {
+        <b>Search By:</b>
+        @Html.RadioButton("searchBy", "Item Name") <text>Item Name</text>
+        @Html.RadioButton("searchBy", "Category") <text>Category</text>
+        @Html.TextBox("search") <input type="submit" value="Search" />
+    }
 </p>
+
+@*another search option dropdown filter*@
+@*<select data-placeholder="Filter By Category" class="chosen-select" style="width:200px;">
+    <option value="">Select an option</option>
+    <option value="Furniture">Furniture</option>
+    <option value="Children Toys">Children Toys</option>
+    <option value="Clothing">Clothing</option>
+    <option value="Electronics">Electronics</option>
+    <option value="Home Decor">Home Decor</option>
+</select>
+
+<select data-placeholder="Filter By Condition" class="chosen-select" style="width:200px;" select id="combobox">
+    <option value="">Select an option</option>
+    <option value="Brand New/Unopened">Brand New/Unopened</option>
+    <option value="Like New/Opened">Like New/Opened</option>
+    <option value="Used/Very Good">Used/Very Good</option>
+    <option value="Used/Acceptable">Used/Acceptable</option>
+</select>*@
+
+<br />
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ItemPhoto)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Category)
+            @Html.DisplayNameFor(model => model.ItemName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ItemName)
+            @Html.DisplayNameFor(model => model.Category)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Price)
@@ -239,34 +223,44 @@
         </th>
         <th></th>
     </tr>
-
-    @foreach (var item in Model)
+    @if (Model.Count() == 0)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ItemPhoto)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ItemName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Condition)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Summary)
-            </td>
-            <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id=item.ItemsId }) |*@
-                @Html.ActionLink("Details", "BuyersDetails", new { id = item.ItemsId })
-                @*@Html.ActionLink("Delete", "Delete", new { id=item.ItemsId })*@
-            </td>
+            <td colspan="6">No listing was found please try your search again</td>
         </tr>
+    }
+    else{
+    foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemPhoto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Condition)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Summary)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id=item.ItemsId }) |*@
+                    @Html.ActionLink("Details", "BuyersDetails", new { id = item.ItemsId })
+                    @*@Html.ActionLink("Delete", "Delete", new { id=item.ItemsId })*@
+                </td>
+            </tr>
+        }
     }
 
 </table>
+<p>
+    @Html.ActionLink("Create New Listing", "Create")
+</p>

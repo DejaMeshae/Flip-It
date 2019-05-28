@@ -18,9 +18,17 @@ namespace Capstone.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Items
-        public ActionResult Index()
+        public ActionResult Index(string searchBy, string search)
         {
-            return View(db.Items.ToList());
+            if(searchBy == "Category")
+            {
+                return View(db.Items.Where(i => i.Category == search || search == null).ToList()); //search by Category
+            }
+            else
+            {
+                return View(db.Items.Where(i => i.ItemName.StartsWith(search) || search == null).ToList()); //Search by Item name
+            }
+            //return View(db.Items.ToList());
         }
 
         public FileContentResult ItemPhotos()
