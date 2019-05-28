@@ -22,14 +22,17 @@ namespace Capstone.Controllers
         public ActionResult Index()
         {
             //var sellers = db.Sellers.Include(s => s.ApplicationUser); display a list of users
-            string CurrentUserID = User.Identity.GetUserId(); //User ID thats logged in now
-            var CurrentSeller = db.Sellers.Where(e => e.ApplicationUserId == CurrentUserID).FirstOrDefault(); //comparing the user thats signed in ID to the ID in the database  
-            List<Items> SellerItems = db.Items.Where(i => i.SellersId == CurrentSeller.SellersId).ToList();
+            //string CurrentUserID = User.Identity.GetUserId(); //User ID thats logged in now
+            //var CurrentSeller = db.Sellers.Where(e => e.ApplicationUserId == CurrentUserID).FirstOrDefault(); //comparing the user thats signed in ID to the ID in the database  
+            //var SellerItems = db.Items.Where(i => i.SellersId == CurrentSeller.SellersId).ToList();
+            //List<Items> SellerItems = db.Items.Where(i => i.SellersId == CurrentSeller.SellersId).ToList();
             //var yourItemForSale = db.Sellers.Where(i => i.SellersId == CurrentSeller.SellersId).ToList(); //comparing the sellers id of the item for sale to the id of the person thats logged in
-            return View("Index", SellerItems); //IF NOT WORKING (ERROR LINE 26) MAKE SURE THAT SELLER CREATED A LISTING IN THE FIRST PLACE
+            //return View("Index", SellerItems); //IF NOT WORKING (ERROR LINE 26) MAKE SURE THAT SELLER CREATED A LISTING IN THE FIRST PLACE
+            return RedirectToAction("SellersItems", "Items"); //or redirect to details of the user
         }
 
-     public FileContentResult UserPhotos()
+
+        public FileContentResult UserPhotos()
         {
             if (User.Identity.IsAuthenticated)
             {

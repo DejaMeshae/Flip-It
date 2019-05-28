@@ -14,41 +14,42 @@
         cursor: pointer;
     }
 
-    #reset:hover {
-        color: #28c8d3;
-        background: #28c8d3;
-    }
+        #reset:hover {
+            color: #28c8d3;
+            background: #28c8d3;
+        }
 
     #apiDiv {
         padding-left: 20px;
     }
-    /*button details*/
-    #apiDiv select, #apiDiv button {
-        font-size: 15px;
-    }
+        /*button details*/
+        #apiDiv select, #apiDiv button {
+            font-size: 15px;
+        }
 
-    #apiDiv h4 {
-        margin: 10px 0;
-    }
+        #apiDiv h4 {
+            margin: 10px 0;
+        }
 
-    #apiDiv .textAlignCenter {
-        text-align: center;
-    }
+        #apiDiv .textAlignCenter {
+            text-align: center;
+        }
 
-    #apiDiv .textAlignCenter img {
-        display: none;
-        width: 100px;
-    }
-    /*Weather table when a city is selected*/
-    #apiDiv #message table {
-        width: 52%;
-        border: double 1px #28c8d3;
-        background: #28c8d3;
-    }
-    #apiDiv #message table th {
-        text-align: left;
-        background: #28c8d3;
-    }
+            #apiDiv .textAlignCenter img {
+                display: none;
+                width: 100px;
+            }
+        /*Weather table when a city is selected*/
+        #apiDiv #message table {
+            width: 52%;
+            border: double 1px #28c8d3;
+            background: #28c8d3;
+        }
+
+            #apiDiv #message table th {
+                text-align: left;
+                background: #28c8d3;
+            }
 </style>
 
 
@@ -116,7 +117,7 @@
     </div>
 </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
 <script>
     //jQuery for WeatherAPI
@@ -184,34 +185,34 @@
 
 @*another search option dropdown filter*@
 @*<select data-placeholder="Filter By Category" class="chosen-select" style="width:200px;">
-    <option value="">Select an option</option>
-    <option value="Furniture">Furniture</option>
-    <option value="Children Toys">Children Toys</option>
-    <option value="Clothing">Clothing</option>
-    <option value="Electronics">Electronics</option>
-    <option value="Home Decor">Home Decor</option>
-</select>
+        <option value="">Select an option</option>
+        <option value="Furniture">Furniture</option>
+        <option value="Children Toys">Children Toys</option>
+        <option value="Clothing">Clothing</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Home Decor">Home Decor</option>
+    </select>
 
-<select data-placeholder="Filter By Condition" class="chosen-select" style="width:200px;" select id="combobox">
-    <option value="">Select an option</option>
-    <option value="Brand New/Unopened">Brand New/Unopened</option>
-    <option value="Like New/Opened">Like New/Opened</option>
-    <option value="Used/Very Good">Used/Very Good</option>
-    <option value="Used/Acceptable">Used/Acceptable</option>
-</select>*@
+    <select data-placeholder="Filter By Condition" class="chosen-select" style="width:200px;" select id="combobox">
+        <option value="">Select an option</option>
+        <option value="Brand New/Unopened">Brand New/Unopened</option>
+        <option value="Like New/Opened">Like New/Opened</option>
+        <option value="Used/Very Good">Used/Very Good</option>
+        <option value="Used/Acceptable">Used/Acceptable</option>
+    </select>*@
 
 <br />
 <table class="table">
     <tr>
         @*@if (Model.Files.Any(f => f.FileType == Capstone.Models.FileType.Avatar))
-        {
-            <dt>
-                Profile Picture
-            </dt>
-            <dd>
-                <img src="~/File?id=@Model.Files.First(f => f.FileType == Capstone.Models.FileType.Avatar).FileId" alt="avatar" style="width:160px;height:220px;" />
-            </dd>
-        }*@
+            {
+                <dt>
+                    Profile Picture
+                </dt>
+                <dd>
+                    <img src="~/File?id=@Model.Files.First(f => f.FileType == Capstone.Models.FileType.Avatar).FileId" alt="avatar" style="width:160px;height:220px;" />
+                </dd>
+            }*@
         <th>
             @Html.DisplayNameFor(model => model.Status)
         </th>
@@ -238,8 +239,9 @@
             <td colspan="6">No listing was found please try your search again</td> @*if no matching item was found*@
         </tr>
     }
-    else{
-    foreach (var item in Model)
+    else
+    {
+        foreach (var item in Model)
         {
             <tr>
                 <td>
@@ -261,9 +263,9 @@
                     @Html.DisplayFor(modelItem => item.Summary)
                 </td>
                 <td>
-                    @*@Html.ActionLink("Edit", "Edit", new { id=item.ItemsId }) |*@
-                    @Html.ActionLink("Details", "BuyersDetails", new { id = item.ItemsId })
-                    @*@Html.ActionLink("Delete", "Delete", new { id=item.ItemsId })*@
+                    @Html.ActionLink("Edit", "Edit", new { id=item.ItemsId }) |
+                    @Html.ActionLink("Details", "BuyersDetails", new { id = item.ItemsId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ItemsId })
                 </td>
             </tr>
         }
@@ -271,5 +273,5 @@
 
 </table>
 <p>
-    @Html.ActionLink("Create New Listing", "Create")
+    @Html.ActionLink("Create New Listing", "Create", "Items")
 </p>

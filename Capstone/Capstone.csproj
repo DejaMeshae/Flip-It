@@ -252,6 +252,14 @@
     <Compile Include="Migrations\201905281846143_ChangedSellersID.Designer.cs">
       <DependentUpon>201905281846143_ChangedSellersID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905282013014_UnChangedIEnumerableFiles.cs" />
+    <Compile Include="Migrations\201905282013014_UnChangedIEnumerableFiles.Designer.cs">
+      <DependentUpon>201905282013014_UnChangedIEnumerableFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905282032013_AddedStatusToItemsModel.cs" />
+    <Compile Include="Migrations\201905282032013_AddedStatusToItemsModel.Designer.cs">
+      <DependentUpon>201905282032013_AddedStatusToItemsModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Buyers.cs" />
@@ -343,6 +351,7 @@
     <Content Include="Views\Items\Edit.cshtml" />
     <Content Include="Views\Items\Index.cshtml" />
     <Content Include="Views\Items\BuyersDetails.cshtml" />
+    <Content Include="Views\Items\SellersItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -407,6 +416,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905281846143_ChangedSellersID.resx">
       <DependentUpon>201905281846143_ChangedSellersID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905282013014_UnChangedIEnumerableFiles.resx">
+      <DependentUpon>201905282013014_UnChangedIEnumerableFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905282032013_AddedStatusToItemsModel.resx">
+      <DependentUpon>201905282032013_AddedStatusToItemsModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -32,47 +32,16 @@ namespace Capstone.Controllers
             //return View(db.Items.ToList());
         }
 
-        public FileContentResult ItemPhotos()
+        public ActionResult SellersItems()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                String userId = User.Identity.GetUserId();
-
-                if (userId == null)
-                {
-                    string fileName = HttpContext.Server.MapPath(@"~/Images/Question_Mark.png");
-
-                    byte[] imageData = null;
-                    FileInfo fileInfo = new FileInfo(fileName);
-                    long imageFileLength = fileInfo.Length;
-                    FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                    BinaryReader br = new BinaryReader(fs);
-                    imageData = br.ReadBytes((int)imageFileLength);
-
-                    return File(imageData, "image /png");
-
-                }
-                // to get the user details to load user Image 
-                var bdUsers = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
-                var userImage = bdUsers.Users.Where(x => x.Id == userId).FirstOrDefault();
-
-                return new FileContentResult(userImage.UserPhoto, "image/jpeg");
-            }
-            else
-            {
-                string fileName = HttpContext.Server.MapPath(@"~/Images/Question_Mark.png");
-
-                byte[] imageData = null;
-                FileInfo fileInfo = new FileInfo(fileName);
-                long imageFileLength = fileInfo.Length;
-                FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
-                BinaryReader br = new BinaryReader(fs);
-                imageData = br.ReadBytes((int)imageFileLength);
-                return File(imageData, "image/png");
-
-            }
+            //var sellers = db.Sellers.Include(s => s.ApplicationUser); display a list of users
+            string CurrentUserID = User.Identity.GetUserId(); //User ID thats logged in now
+            var CurrentSeller = db.Sellers.Where(e => e.ApplicationUserId == CurrentUserID).FirstOrDefault(); //comparing the user thats signed in ID to the ID in the database  
+            var SellerItems = db.Items.Where(i => i.SellersId == CurrentSeller.SellersId).ToList();
+            //List<Items> SellerItems = db.Items.Where(i => i.SellersId == CurrentSeller.SellersId).ToList();
+            //var yourItemForSale = db.Sellers.Where(i => i.SellersId == CurrentSeller.SellersId).ToList(); //comparing the sellers id of the item for sale to the id of the person thats logged in
+            return View(SellerItems);
         }
-
 
         // GET: Items/Details/5
         public ActionResult Details(int? id)
@@ -115,7 +84,7 @@ namespace Capstone.Controllers
         // POST: Items/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ItemName,Price,Category,Condition,Summary")] Items items, HttpPostedFileBase upload)
+        public ActionResult Create([Bind(Include = "ItemName,Price,Status,Category,Condition,Summary")] Items items, HttpPostedFileBase upload)
         {
             try
             {
@@ -145,7 +114,7 @@ namespace Capstone.Controllers
                     db.Items.Add(items); //add the entire item to the items database
                     //items.ItemPhoto = imageData; //tie the image in too
                     db.SaveChanges();
-                    return RedirectToAction("Index", "Items"); //after Seller creates a listing it should return them to a list of their items for sale
+                    return RedirectToAction("SellersItems", "Items"); //after Seller creates a listing it should return them to a list of their items for sale
                 }
             }
             catch (RetryLimitExceededException /* dex */)
@@ -211,7 +180,7 @@ namespace Capstone.Controllers
             Items items = db.Items.Find(id);
             db.Items.Remove(items);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("SellersItems");
         }
 
         protected override void Dispose(bool disposing)
