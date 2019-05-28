@@ -183,7 +183,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\APIKeys.cs" />
     <Compile Include="Controllers\BuyersController.cs" />
-    <Compile Include="Controllers\FilesController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\GeoLocationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
@@ -239,6 +239,18 @@
     <Compile Include="Migrations\201905250148023_BackToItemsFKCommentedOut.cs" />
     <Compile Include="Migrations\201905250148023_BackToItemsFKCommentedOut.Designer.cs">
       <DependentUpon>201905250148023_BackToItemsFKCommentedOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905281635559_FKToFilesAndItems.cs" />
+    <Compile Include="Migrations\201905281635559_FKToFilesAndItems.Designer.cs">
+      <DependentUpon>201905281635559_FKToFilesAndItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905281818140_ChangedUm.cs" />
+    <Compile Include="Migrations\201905281818140_ChangedUm.Designer.cs">
+      <DependentUpon>201905281818140_ChangedUm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905281846143_ChangedSellersID.cs" />
+    <Compile Include="Migrations\201905281846143_ChangedSellersID.Designer.cs">
+      <DependentUpon>201905281846143_ChangedSellersID.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -335,6 +347,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Files\" />
+    <Folder Include="Views\File\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -385,6 +398,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905250148023_BackToItemsFKCommentedOut.resx">
       <DependentUpon>201905250148023_BackToItemsFKCommentedOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905281635559_FKToFilesAndItems.resx">
+      <DependentUpon>201905281635559_FKToFilesAndItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905281818140_ChangedUm.resx">
+      <DependentUpon>201905281818140_ChangedUm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905281846143_ChangedSellersID.resx">
+      <DependentUpon>201905281846143_ChangedSellersID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

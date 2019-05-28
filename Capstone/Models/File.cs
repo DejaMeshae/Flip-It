@@ -18,11 +18,9 @@ namespace Capstone.Models
         public byte[] Content { get; set; }
         public FileType FileType { get; set; }
 
-        public int SellersId { get; set; }
-        public virtual Sellers Sellers { get; set; }
+        public int ItemsId { get; set; }
+        public virtual Items Items { get; set; }
 
-        //public int ItemsId { get; set; }
-        //public virtual Items Items { get; set; }
 
     }
 }

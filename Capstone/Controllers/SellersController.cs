@@ -80,8 +80,8 @@ namespace Capstone.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Sellers sellers = db.Sellers.Where(s => s.SellersId == id).Include(a => a.ApplicationUser).FirstOrDefault();
-            Sellers sellers = db.Sellers.Include(s => s.Files).SingleOrDefault(s => s.SellersId == id);
-            //Sellers sellers = db.Sellers.Find(id);
+            //Sellers sellers = db.Sellers.Include(s => s.Files).SingleOrDefault(s => s.SellersId == id);
+            Sellers sellers = db.Sellers.Find(id);
             if (sellers == null)
             {
                 return HttpNotFound();
@@ -99,7 +99,7 @@ namespace Capstone.Controllers
         // POST: Sellers/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SellersId,Email,Firstname,Lastname,Address,City,State,ZipCode")] Sellers sellers, HttpPostedFileBase upload)
+        public ActionResult Create([Bind(Include = "SellersId,Email,Firstname,Lastname,Address,City,State,ZipCode")] Sellers sellers)
         {
             try
             {

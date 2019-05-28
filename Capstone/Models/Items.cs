@@ -16,9 +16,6 @@ namespace Capstone.Models
         public string ItemName { get; set; }
         public decimal Price { get; set; }
         public string Category { get; set; }
-
-        [Display(Name = "Photo of Item")]
-        public byte[] ItemPhoto { get; set; }
         public string Condition { get; set; }
         public string Summary { get; set; }
         public string Lat { get; set; }

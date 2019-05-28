@@ -89,11 +89,6 @@
                 title: 'item location marker',
                 zIndex: 1
             });
-            var bounds = new google.map.LatLngBounds();
-            loc = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
-            bounds.extend(loc);
-            map.fitBounds(bounds);
-            map.panToBounds(bounds);
         }
 
     </script>
@@ -110,15 +105,15 @@
 
     <dl class="dl-horizontal">
 
-            @*@if (Model.Files.Any(f => f.FileType == Capstone.Models.FileType.Avatar))
+       @if (Model.Files.Any(f => f.FileType == Capstone.Models.FileType.Avatar))
         {
             <dt>
-                Profile Picture
+                Item Photo
             </dt>
             <dd>
                 <img src="~/File?id=@Model.Files.First(f => f.FileType == Capstone.Models.FileType.Avatar).FileId" alt="avatar" style="width:160px;height:220px;" />
             </dd>
-        }*@
+        }
 
             @*<dt>
             @Html.DisplayNameFor(model => model.ItemPhoto)

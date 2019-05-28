@@ -12,23 +12,23 @@
     <hr />
 
     <dl class="dl-horizontal">
-        @*@if (Model.Files.Any(f => f.FileType == Capstone.Models.FileType.Avatar))
-            {
-                <dt>
-                    Profile Picture
-                </dt>
-                <dd>
-                    <img src="~/File?id=@Model.Files.First(f => f.FileType == Capstone.Models.FileType.Avatar).FileId" alt="avatar" style="width:160px;height:220px;" />
-                </dd>
-            }*@
-
-        @*<dt>
-                @Html.DisplayNameFor(model => model.ItemPhoto)
+        @if (Model.Files.Any(f => f.FileType == FileType.Avatar))
+        {
+            <dt>
+                Item Photo
             </dt>
             <dd>
-                @Html.DisplayFor(model => model.ItemPhoto)
-                <img src="@Url.Action("ItemPhotos", "Items" )" height="198" width="128" />
-            </dd>*@
+                <img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Avatar).FileId" alt="avatar" style="width:180px;height:220px;" />
+            </dd>
+        }
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.ItemPhoto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ItemPhoto)
+            <img src="@Url.Action("ItemPhotos", "Items" )" height="198" width="128" />
+        </dd>*@
 
         <dt>
             @Html.DisplayNameFor(model => model.ItemName)

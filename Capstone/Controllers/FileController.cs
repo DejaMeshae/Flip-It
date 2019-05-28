@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Capstone.Controllers
 {
-    public class FilesController : Controller
+    public class FileController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         // GET: /File/

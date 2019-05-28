@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -80,7 +81,8 @@ namespace Capstone.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Items items = db.Items.Find(id);
+            Items items = db.Items.Include(i => i.Files).SingleOrDefault(j => j.ItemsId == id);
+            //Items items = db.Items.Find(id);
             if (items == null)
             {
                 return HttpNotFound();
@@ -106,43 +108,54 @@ namespace Capstone.Controllers
         // GET: Items/Create
         public ActionResult Create()
         {
-            ViewBag.ItemsId = new SelectList(db.Items, "Id", "ItemPhoto");
+            ViewBag.ItemsId = new SelectList(db.Items, "Id");
             return View();
         }
 
         // POST: Items/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ItemName,Price,Category,Condition,Summary,ItemPhoto")] Items items)
+        public ActionResult Create([Bind(Include = "ItemName,Price,Category,Condition,Summary")] Items items, HttpPostedFileBase upload)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    byte[] imageData = null;
-            //    if (Request.Files.Count > 0)
-            //    {
-            //        HttpPostedFileBase poImgFile = Request.Files["UserPhoto"];
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    if (upload != null && upload.ContentLength > 0)
+                    {
+                        var avatar = new Models.File //had to add Model in front instead of just File like in UploadPhoto 
+                        {
+                            FileName = System.IO.Path.GetFileName(upload.FileName),
+                            FileType = FileType.Avatar,
+                            ContentType = upload.ContentType
+                        };
+                        using (var reader = new System.IO.BinaryReader(upload.InputStream))
+                        {
+                            avatar.Content = reader.ReadBytes(upload.ContentLength);
+                        }
+                        items.Files = new List<Models.File> { avatar };
+                    }
+                    string CurrentUserId = User.Identity.GetUserId(); //user thats logged in now
+                    Sellers CurrentSellersInfo = db.Sellers.Where(s => s.ApplicationUserId == CurrentUserId).FirstOrDefault(); //comparing that user to the ApplicationUserId thats in the database and if its the same then grab them 
+                    items.SellersId = CurrentSellersInfo.SellersId; //connecting the sellersId of that item to the current user thats signed in Id
+                    var lat = db.Sellers.Where(s => s.SellersId == items.SellersId).Select(i => i.Lat).FirstOrDefault(); //getting the lat of the seller
+                    var lng = db.Sellers.Where(s => s.SellersId == items.SellersId).Select(i => i.Lng).FirstOrDefault(); //getting the lng of the seller
+                    items.Lat = lat;
+                    items.Lng = lng;
+                    db.Items.Add(items); //add the entire item to the items database
+                    //items.ItemPhoto = imageData; //tie the image in too
+                    db.SaveChanges();
+                    return RedirectToAction("Index", "Items"); //after Seller creates a listing it should return them to a list of their items for sale
+                }
+            }
+            catch (RetryLimitExceededException /* dex */)
+            {
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+            return View(items);
 
-            //        using (var reader = new System.IO.BinaryReader(poImgFile.InputStream))
-            //        {
-            //            imageData = reader.ReadBytes(poImgFile.ContentLength);
-            //        }
-            //    }
-
-                string CurrentUserId = User.Identity.GetUserId(); //user thats logged in now
-                Sellers CurrentSellersInfo = db.Sellers.Where(s => s.ApplicationUserId == CurrentUserId).FirstOrDefault(); //comparing that user to the ApplicationUserId thats in the database and if its the same then grab them 
-                items.SellersId = CurrentSellersInfo.SellersId; //connecting the sellersId of that item to the current user thats signed in Id
-                var lat = db.Sellers.Where(s => s.SellersId == items.SellersId).Select(i => i.Lat).FirstOrDefault(); //getting the lat of the seller
-                var lng = db.Sellers.Where(s => s.SellersId == items.SellersId).Select(i => i.Lng).FirstOrDefault(); //getting the lng of the seller
-                items.Lat = lat;
-                items.Lng = lng;
-                db.Items.Add(items); //add the entire item to the items database
-                //items.ItemPhoto = imageData; //tie the image in too
-                db.SaveChanges();
-                return RedirectToAction("Index", "Sellers"); //after Seller creates a listing it should return them to a list of their items for sale
-            //}
-
-            //return View(items);
         }
+
 
         // GET: Items/Edit/5
         public ActionResult Edit(int? id)

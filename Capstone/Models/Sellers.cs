@@ -37,6 +37,6 @@ namespace Capstone.Models
         public string ApplicationUserId { get; set; }
         public virtual ApplicationUser ApplicationUser { get; set; }
 
-        public virtual ICollection<File> Files { get; set; }
+        //public virtual ICollection<File> Files { get; set; }
     }
 }
