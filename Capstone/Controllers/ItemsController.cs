@@ -26,7 +26,7 @@ namespace Capstone.Controllers
             }
             else
             {
-                return View(db.Items.Where(i => i.ItemName.StartsWith(search) || search == null).ToList()); //Search by Item name
+                return View(db.Items.Where(i => i.ItemName.Contains(search) || search == null).ToList()); //Search by Item name
             }
             //return View(db.Items.ToList());
         }
