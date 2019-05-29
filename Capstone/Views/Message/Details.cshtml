@@ -1,0 +1,34 @@
+﻿@model Capstone.Models.Message
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Message</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Sellers.Firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sellers.Firstname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MessageBox)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MessageBox)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MessageId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

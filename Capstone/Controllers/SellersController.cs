@@ -108,21 +108,6 @@ namespace Capstone.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    //if (upload != null && upload.ContentLength > 0)
-                    //{
-                    //    var avatar = new Models.File //had to add Model in front instead of just File like in UploadPhoto 
-                    //    {
-                    //        FileName = System.IO.Path.GetFileName(upload.FileName),
-                    //        FileType = FileType.Avatar,
-                    //        ContentType = upload.ContentType
-                    //    };
-                    //    using (var reader = new System.IO.BinaryReader(upload.InputStream))
-                    //    {
-                    //        avatar.Content = reader.ReadBytes(upload.ContentLength);
-                    //    }
-                    //    sellers.Files = new List<Models.File> { avatar };
-
-                    //}
                     sellers.ApplicationUserId = User.Identity.GetUserId();
                     string address = (sellers.Address + "+" + sellers.City + "+" + sellers.State + "+" + sellers.ZipCode);
                     GeoLocationController geoLocation = new GeoLocationController();
@@ -131,8 +116,8 @@ namespace Capstone.Controllers
                     sellers.Lng = geoLocation.longitude;
                     db.Sellers.Add(sellers);
                     db.SaveChanges();
-                    //return RedirectToAction("Index", "Items");
-                    return RedirectToAction("Details", new { id = sellers.SellersId }); //or redirect to details of the user
+                    return RedirectToAction("Index", "Items");
+                    //return RedirectToAction("Details", new { id = sellers.SellersId }); //or redirect to details of the user
                 }
             }
             catch (RetryLimitExceededException /* dex */)

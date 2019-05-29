@@ -10,7 +10,7 @@ namespace Capstone.Models
     public class ApplicationUser : IdentityUser
     {
         public DbSet<Sellers> Sellers { get; set; }
-        public DbSet<Buyers> Buyers { get; set; }
+        public DbSet<Message> Buyers { get; set; }
         public DbSet<Items> Items { get; set; }
 
         public byte[] UserPhoto { get; set; }
@@ -38,7 +38,7 @@ namespace Capstone.Models
         }
         public System.Data.Entity.DbSet<Capstone.Models.Sellers> Sellers { get; set; }
 
-        public System.Data.Entity.DbSet<Capstone.Models.Buyers> Buyers { get; set; }
+        public System.Data.Entity.DbSet<Capstone.Models.Message> Buyers { get; set; }
 
         public System.Data.Entity.DbSet<Capstone.Models.Items> Items { get; set; }
     }

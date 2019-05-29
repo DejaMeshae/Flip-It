@@ -182,12 +182,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\APIKeys.cs" />
-    <Compile Include="Controllers\BuyersController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\GeoLocationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\SellersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -260,9 +260,13 @@
     <Compile Include="Migrations\201905282032013_AddedStatusToItemsModel.Designer.cs">
       <DependentUpon>201905282032013_AddedStatusToItemsModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905292130452_ChangedBuyersModelToMessageModel.cs" />
+    <Compile Include="Migrations\201905292130452_ChangedBuyersModelToMessageModel.Designer.cs">
+      <DependentUpon>201905292130452_ChangedBuyersModelToMessageModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Buyers.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\FileType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -340,7 +344,6 @@
     <Content Include="Views\Sellers\Details.cshtml" />
     <Content Include="Views\Sellers\Edit.cshtml" />
     <Content Include="Views\Sellers\Index.cshtml" />
-    <Content Include="Views\Buyers\Create.cshtml" />
     <Content Include="Views\Buyers\Delete.cshtml" />
     <Content Include="Views\Buyers\Details.cshtml" />
     <Content Include="Views\Buyers\Edit.cshtml" />
@@ -353,6 +356,11 @@
     <Content Include="Views\Items\BuyersDetails.cshtml" />
     <Content Include="Views\Items\SellersItems.cshtml" />
     <Content Include="Views\Items\SellerDetails.cshtml" />
+    <Content Include="Views\Message\Create.cshtml" />
+    <Content Include="Views\Message\Delete.cshtml" />
+    <Content Include="Views\Message\Details.cshtml" />
+    <Content Include="Views\Message\Edit.cshtml" />
+    <Content Include="Views\Message\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -423,6 +431,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905282032013_AddedStatusToItemsModel.resx">
       <DependentUpon>201905282032013_AddedStatusToItemsModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905292130452_ChangedBuyersModelToMessageModel.resx">
+      <DependentUpon>201905292130452_ChangedBuyersModelToMessageModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

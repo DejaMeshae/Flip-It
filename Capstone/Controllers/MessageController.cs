@@ -7,115 +7,119 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Capstone.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Capstone.Controllers
 {
-    public class BuyersController : Controller
+    public class MessageController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Buyers
+        // GET: Message
         public ActionResult Index()
         {
-            var buyers = db.Buyers.Include(b => b.ApplicationUser);
+            var buyers = db.Buyers.Include(m => m.Sellers);
             return View(buyers.ToList());
         }
 
-        // GET: Buyers/Details/5
+        // GET: Message/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Buyers buyers = db.Buyers.Find(id);
-            if (buyers == null)
+            Message message = db.Buyers.Find(id);
+            if (message == null)
             {
                 return HttpNotFound();
             }
-            return View(buyers);
+            return View(message);
         }
 
-        // GET: Buyers/Create
-        public ActionResult Create()
+        // GET: Message/Create
+        public ActionResult Create() //LEFT OFF MAYBE ADD FK OF APPLICATION ID SO THAT WAY THE MESSAGE HAS A SELLERS ID AND APPLICATION ID RELATION THEN THEY CAN VIEW MESSAGES OF BOTH WHERE HAVE BOTH APPLICATION ID AND SELLERS ID?
         {
-            ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email");
+            ViewBag.SellersId = new SelectList(db.Sellers, "SellersId", "Firstname");
             return View();
         }
 
-        // POST: Buyers/Create
+        // POST: Message/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BuyersId,Firstname,Lastname,Address,City,State,ZipCode,UserPhoto,Lat,Lng,ApplicationUserId")] Buyers buyers)
+        public ActionResult Create([Bind(Include = "MessageId,MessageBox,SellersId")] Message message)
         {
             if (ModelState.IsValid)
             {
-                db.Buyers.Add(buyers);
+                string CurrentUserId = User.Identity.GetUserId(); //user thats logged in now
+                Sellers CurrentSellersInfo = db.Sellers.Where(s => s.ApplicationUserId == CurrentUserId).FirstOrDefault(); //comparing that user to the ApplicationUserId thats in the database and if its the same then grab them 
+                message.SellersId = CurrentSellersInfo.SellersId; //connecting the sellersId of that item to the message Sellers ID
+                db.Buyers.Add(message);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email", buyers.ApplicationUserId);
-            return View(buyers);
+            ViewBag.SellersId = new SelectList(db.Sellers, "SellersId", "Firstname", message.SellersId);
+            return View(message);
         }
 
-        // GET: Buyers/Edit/5
+        // GET: Message/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Buyers buyers = db.Buyers.Find(id);
-            if (buyers == null)
+            Message message = db.Buyers.Find(id);
+            if (message == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email", buyers.ApplicationUserId);
-            return View(buyers);
+            ViewBag.SellersId = new SelectList(db.Sellers, "SellersId", "Firstname", message.SellersId);
+            return View(message);
         }
 
-        // POST: Buyers/Edit/5
+        // POST: Message/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BuyersId,Firstname,Lastname,Address,City,State,ZipCode,UserPhoto,Lat,Lng,ApplicationUserId")] Buyers buyers)
+        public ActionResult Edit([Bind(Include = "MessageId,MessageBox,SellersId")] Message message)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(buyers).State = EntityState.Modified;
+                db.Entry(message).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Email", buyers.ApplicationUserId);
-            return View(buyers);
+            ViewBag.SellersId = new SelectList(db.Sellers, "SellersId", "Firstname", message.SellersId);
+            return View(message);
         }
 
-        // GET: Buyers/Delete/5
+        // GET: Message/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Buyers buyers = db.Buyers.Find(id);
-            if (buyers == null)
+            Message message = db.Buyers.Find(id);
+            if (message == null)
             {
                 return HttpNotFound();
             }
-            return View(buyers);
+            return View(message);
         }
 
-        // POST: Buyers/Delete/5
+        // POST: Message/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Buyers buyers = db.Buyers.Find(id);
-            db.Buyers.Remove(buyers);
+            Message message = db.Buyers.Find(id);
+            db.Buyers.Remove(message);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

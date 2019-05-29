@@ -4,7 +4,6 @@
     ViewBag.Title = "Create";
 }
 
-
 <h2>Create A Listing</h2>
 
 
@@ -54,6 +53,8 @@
                     <option value="Clothing">Clothing</option>
                     <option value="Electronics">Electronics</option>
                     <option value="Home Decor">Home Decor</option>
+                    <option value="Garage Sale">Garage Sale</option>
+
                 </select>
             }
         </div>
@@ -68,6 +69,7 @@
                     <option value="Like New/Opened">Like New/Opened</option>
                     <option value="Used/Very Good">Used/Very Good</option>
                     <option value="Used/Acceptable">Used/Acceptable</option>
+                    <option value="Garage Sale Items">Garage Sale Items</option>
                 </select>
             }
         </div>
@@ -88,6 +90,7 @@
             @*the 6 is the height and 40 is the width*@
         </div>
     </div>
+
 
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @*@Html.HiddenFor(model => model.ItemsId)*@
