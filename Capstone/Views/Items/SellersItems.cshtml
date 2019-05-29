@@ -53,30 +53,6 @@
 </style>
 
 
-@*Milwaukee skyline div*@
-<div class="w3-card-4 w3-margin" style="width:50%">
-    <center>
-        <div class="w3-display-container w3-text-white">
-            <img src="~/Images/Milwaukee-skyline.jpg" alt="Lights" style="width:100%">
-            <div class="w3-xlarge w3-display-bottomleft w3-padding">Milwaukee 60&deg; F</div>
-        </div>
-        <div class="w3-row">
-            <div class="w3-third w3-center">
-                <h3>TUE</h3>
-                <img src="~/Images/img_weather_sun.jpg" alt="sun" style="width:80px">
-            </div>
-            <div class="w3-third w3-center">
-                <h3>WED</h3>
-                <img src="~/Images/img_weather_cloud_sun.jpg" alt="cloud" style="width:80px">
-            </div>
-            <div class="w3-third w3-center w3-margin-bottom">
-                <h3>THURS</h3>
-                <img src="~/Images/img_weather_sun.jpg" alt="clouds" style="width:80px">
-            </div>
-        </div>
-    </center>
-</div>
-
 @*//pick a city*@
 <div class="dl-horizontal">
     <div id="apiDiv">
@@ -171,7 +147,7 @@
 </script>
 
 <br />
-<h2>All Items for Sale</h2>
+<h2>Your Items for Sale</h2>
 
 <p>
     @using (Html.BeginForm("Index", "Items", FormMethod.Get))
@@ -264,7 +240,7 @@
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id=item.ItemsId }) |
-                    @Html.ActionLink("Details", "BuyersDetails", new { id = item.ItemsId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ItemsId }) |
                     @Html.ActionLink("Delete", "Delete", new { id=item.ItemsId })
                 </td>
             </tr>

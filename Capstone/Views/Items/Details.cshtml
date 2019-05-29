@@ -8,7 +8,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Item details</h4>
+    <h4>Your item(s) details</h4>
     <hr />
 
     <dl class="dl-horizontal">
@@ -18,7 +18,7 @@
                 Item Photo
             </dt>
             <dd>
-                <img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Avatar).FileId" alt="avatar" style="width:180px;height:220px;" />
+                <img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Avatar).FileId" alt="avatar" style="width:280px;height:220px;" />
             </dd>
         }
 
@@ -82,5 +82,5 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ItemsId }) |
-    @Html.ActionLink("Back to List Of All Items", "Index")       |
+    @Html.ActionLink("Back to List Of Your Items", "SellersItems")       
 </p>

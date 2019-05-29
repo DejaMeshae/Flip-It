@@ -10,15 +10,12 @@
     <h4>Your Account Information</h4>
     <hr />
     <dl class="dl-horizontal">
-        @if (Model.Files.Any(f => f.FileType == FileType.Avatar))
-        {
-            <dt>
-                Profile Picture
-            </dt>
-            <dd>
-                <img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Avatar).FileId" alt="avatar" style="width:160px;height:220px;" />
-            </dd>
-        }
+        <dt>
+            Profile Photo
+        </dt>
+        <dd>
+            <img src="@Url.Action("UserPhotos", "Sellers" )" height="180" width="138" />
+        </dd>
 
         @*<dt>
             @Html.DisplayNameFor(model => model.UserPhoto)

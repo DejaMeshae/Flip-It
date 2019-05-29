@@ -59,7 +59,22 @@ namespace Capstone.Controllers
             return View(items);
         }
 
-        //GET Items/Details/5
+        //To View Sellers Profile
+        public ActionResult SellerDetails(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Sellers sellers = db.Sellers.Find(id);
+            if (sellers == null)
+            {
+                return HttpNotFound();
+            }
+            return View(sellers);
+        }
+
+        //GET For the potential buyer to see details of an item
         public ActionResult BuyersDetails(int? id)
         {
             if (id == null)
@@ -146,7 +161,7 @@ namespace Capstone.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ItemsId,ItemName,Price,Category,UserPhoto,Condition,Summary")] Items items)
+        public ActionResult Edit([Bind(Include = "ItemName,Price,Status,Category,Condition,Summary")] Items items)
         {
             if (ModelState.IsValid)
             {

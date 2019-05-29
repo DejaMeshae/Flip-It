@@ -1,0 +1,70 @@
+﻿@model Capstone.Models.Sellers
+
+@{
+    ViewBag.Title = "SellerDetails";
+}
+
+<h2>Seller Profile</h2>
+
+<div>
+    @*<h4>Items</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        @*@if (Model.Files.Any(f => f.FileType == FileType.Avatar))
+        {
+            <dt>
+                Profile Picture
+            </dt>
+            <dd>
+                <img src="~/File?id=@Model.Files.First(f => f.FileType == FileType.Avatar).FileId" alt="avatar" style="width:160px;height:220px;" />
+            </dd>
+        }*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Firstname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Firstname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Lastname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Lastname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.ItemsId }) |*@
+    @Html.ActionLink("Back to List Of All Items", "Index") |
+    @Html.ActionLink("Message Seller", "Index")
+
+</p>
