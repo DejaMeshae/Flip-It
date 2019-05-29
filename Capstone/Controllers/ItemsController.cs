@@ -161,15 +161,29 @@ namespace Capstone.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ItemName,Price,Status,Category,Condition,Summary")] Items items)
+        //public ActionResult Edit([Bind(Include = "ItemName,Price,Status,Category,Condition,Summary")] Items items)
+        public ActionResult Edit(Items items)
+
         {
             if (ModelState.IsValid)
+            //{
+            //    db.Entry(items).State = EntityState.Modified;
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+
             {
-                db.Entry(items).State = EntityState.Modified;
+                //query by id (primary key) again to grab all of that superhero info
+                var itemsToEdit = db.Items.Where(h => h.ItemsId == items.ItemsId).SingleOrDefault();
+                itemsToEdit.Status = items.Status;
+                itemsToEdit.Price = items.Price;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("SellersItems");
             }
+
+
             return View(items);
+            
         }
 
         // GET: Items/Delete/5
