@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Braintree;
 using Capstone.Models;
 using Microsoft.AspNet.Identity;
 
@@ -25,6 +26,12 @@ namespace Capstone.Controllers
             //var SellerMessages = db.Buyers.Where(i => i.SellersId == CurrentSeller.SellersId).ToList();
             //return View(SellerMessages);
 
+        }
+
+        public ActionResult PaypalCheckout()
+        {
+
+            return View("PayPalCheckout");
         }
 
         // GET: Message/Details/5
