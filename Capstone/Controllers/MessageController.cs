@@ -20,6 +20,11 @@ namespace Capstone.Controllers
         {
             var buyers = db.Buyers.Include(m => m.Sellers);
             return View(buyers.ToList());
+            //string CurrentUserID = User.Identity.GetUserId(); //User ID thats logged in now
+            //var CurrentSeller = db.Sellers.Where(e => e.ApplicationUserId == CurrentUserID).FirstOrDefault(); //comparing the user thats signed in ID to the ID in the database  
+            //var SellerMessages = db.Buyers.Where(i => i.SellersId == CurrentSeller.SellersId).ToList();
+            //return View(SellerMessages);
+
         }
 
         // GET: Message/Details/5
@@ -38,7 +43,7 @@ namespace Capstone.Controllers
         }
 
         // GET: Message/Create
-        public ActionResult Create() //LEFT OFF MAYBE ADD FK OF APPLICATION ID SO THAT WAY THE MESSAGE HAS A SELLERS ID AND APPLICATION ID RELATION THEN THEY CAN VIEW MESSAGES OF BOTH WHERE HAVE BOTH APPLICATION ID AND SELLERS ID?
+        public ActionResult Create() 
         {
             ViewBag.SellersId = new SelectList(db.Sellers, "SellersId", "Firstname");
             return View();

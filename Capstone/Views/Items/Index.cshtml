@@ -57,19 +57,19 @@
     <center>
         <div class="w3-display-container w3-text-white">
             <img src="~/Images/Milwaukee-skyline.jpg" alt="Lights" style="width:100%">
-            <div class="w3-xlarge w3-display-bottomleft w3-padding">Milwaukee 60&deg; F</div>
+            <div class="w3-xlarge w3-display-bottomleft w3-padding">Milwaukee 63&deg; F</div>
         </div>
         <div class="w3-row">
             <div class="w3-third w3-center">
-                <h3>WED</h3>
+                <h3>THURS</h3>
                 <img src="~/Images/img_weather_cloud_sun.jpg" alt="sun" style="width:80px">
             </div>
             <div class="w3-third w3-center">
-                <h3>THURS</h3>
+                <h3>FRI</h3>
                 <img src="~/Images/img_weather_cloud_sun.jpg" alt="cloud" style="width:80px">
             </div>
             <div class="w3-third w3-center w3-margin-bottom">
-                <h3>FRI</h3>
+                <h3>SAT</h3>
                 <img src="~/Images/img_weather_sun.jpg" alt="clouds" style="width:80px">
             </div>
         </div>
@@ -203,7 +203,7 @@
 <br />
 <table class="table">
     <tr>
-        @*@if (Model.Files.Any(f => f.FileType == Capstone.Models.FileType.Avatar))
+        @*@if (Model.Files.Any(f => f.FileType == Capstone.Models.FileType.Avatar).First)
         {
             <dt>
                 Profile Picture
@@ -262,7 +262,7 @@
                 </td>
                 <td>
                     @*@Html.ActionLink("Edit", "Edit", new { id=item.ItemsId }) |*@
-                    @Html.ActionLink("Details", "BuyersDetails", new { id = item.ItemsId })
+                    @Html.ActionLink("Details", "BuyersDetails", new { id = item.ItemsId })|
                     @*@Html.ActionLink("Delete", "Delete", new { id=item.ItemsId })*@
                 </td>
             </tr>
@@ -271,5 +271,6 @@
 
 </table>
 <p>
-    @Html.ActionLink("Create New Listing", "Create")
+    |
+    @Html.ActionLink("Create New Listing", "Create")|
 </p>
