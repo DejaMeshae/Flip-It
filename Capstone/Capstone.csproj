@@ -192,6 +192,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\APIKeys.cs" />
+    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\GeoLocationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -386,6 +387,7 @@
     <Content Include="Views\Message\Edit.cshtml" />
     <Content Include="Views\Message\Index.cshtml" />
     <Content Include="Views\Message\PayPalCheckout.cshtml" />
+    <Content Include="Views\Checkout\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
